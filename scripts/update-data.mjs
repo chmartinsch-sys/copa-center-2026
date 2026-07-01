@@ -1,12 +1,28 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 const KEY = process.env.API_FOOTBALL_KEY;
-const LEAGUE = process.env.API_FOOTBALL_LEAGUE || "1";
+const DEFAULT_LEAGUE = process.env.API_FOOTBALL_LEAGUE || "1";
 const SEASON = process.env.API_FOOTBALL_SEASON || "2026";
 const BASE = "https://v3.football.api-sports.io";
 const DATA_PATH = "data/copa2026.json";
+const STATUS_PATH = "data/api-football-status.json";
+const DATE_FROM = "2026-06-11";
+const DATE_TO = "2026-07-19";
+const MAX_CANDIDATES = 8;
 
 if (!KEY) throw new Error("API_FOOTBALL_KEY não configurada nos GitHub Secrets.");
+
+const discovery = {
+  checkedAt: new Date().toISOString(),
+  targetSeason: SEASON,
+  defaultLeague: DEFAULT_LEAGUE,
+  leagueQueries: [],
+  candidates: [],
+  fixtureAttempts: [],
+  selected: null,
+  updatedData: false,
+  message: ""
+};
 
 async function readPreviousData() {
   try {
@@ -14,6 +30,10 @@ async function readPreviousData() {
   } catch {
     return null;
   }
+}
+
+async function writeStatus(extra = {}) {
+  await writeFile(STATUS_PATH, JSON.stringify({ ...discovery, ...extra }, null, 2) + "\n", "utf8");
 }
 
 async function api(path) {
@@ -24,16 +44,122 @@ async function api(path) {
   return json.response || [];
 }
 
-async function fetchFixtures() {
+function hasTargetSeason(leagueResponse) {
+  return (leagueResponse.seasons || []).some(s => String(s.year) === String(SEASON));
+}
+
+function isMainWorldCupCandidate(leagueResponse) {
+  const name = leagueResponse.league?.name || "";
+  const country = leagueResponse.country?.name || "";
+  const combined = `${name} ${country}`.toLowerCase();
+
+  if (!combined.includes("world cup") && !combined.includes("fifa")) return false;
+
+  const exclude = ["women", "u17", "u20", "u21", "u23", "qualification", "qualifiers", "qualifying", "club", "beach", "friendly"];
+  return !exclude.some(term => combined.includes(term));
+}
+
+function scoreCandidate(leagueResponse) {
+  const name = (leagueResponse.league?.name || "").toLowerCase();
+  let score = 0;
+
+  if (name === "world cup") score += 100;
+  if (name.includes("fifa world cup")) score += 90;
+  if (name.includes("world cup")) score += 60;
+  if (hasTargetSeason(leagueResponse)) score += 40;
+  if (isMainWorldCupCandidate(leagueResponse)) score += 30;
+
+  return score;
+}
+
+async function discoverLeagueCandidates() {
+  const byKey = new Map();
+
+  function addCandidate(item, origin) {
+    const id = item.league?.id;
+    if (!id) return;
+    const key = `${id}:${SEASON}`;
+    const candidate = {
+      id: String(id),
+      season: SEASON,
+      name: item.league?.name || "",
+      country: item.country?.name || "",
+      type: item.league?.type || "",
+      origin,
+      hasTargetSeason: hasTargetSeason(item),
+      score: scoreCandidate(item)
+    };
+
+    if (!byKey.has(key) || byKey.get(key).score < candidate.score) byKey.set(key, candidate);
+  }
+
+  // Always test the configured league first.
+  byKey.set(`${DEFAULT_LEAGUE}:${SEASON}`, {
+    id: String(DEFAULT_LEAGUE),
+    season: SEASON,
+    name: "Configured league",
+    country: "",
+    type: "Cup",
+    origin: "env:API_FOOTBALL_LEAGUE",
+    hasTargetSeason: true,
+    score: 75
+  });
+
+  const leagueSearches = [
+    "/leagues?search=World%20Cup",
+    "/leagues?search=FIFA",
+    `/leagues?season=${encodeURIComponent(SEASON)}`
+  ];
+
+  for (const path of leagueSearches) {
+    try {
+      const response = await api(path);
+      discovery.leagueQueries.push({ path, count: response.length });
+
+      for (const item of response) {
+        if (!isMainWorldCupCandidate(item)) continue;
+        addCandidate(item, path);
+      }
+    } catch (error) {
+      discovery.leagueQueries.push({ path, error: error.message });
+      console.warn(`Falha ao consultar ${path}:`, error.message);
+    }
+  }
+
+  const candidates = [...byKey.values()]
+    .sort((a, b) => b.score - a.score)
+    .slice(0, MAX_CANDIDATES);
+
+  discovery.candidates = candidates;
+  console.log("Candidatos de liga:", candidates.map(c => `${c.id}/${c.season} ${c.name} score=${c.score}`).join(" | "));
+  return candidates;
+}
+
+async function tryCandidateFixtures(candidate) {
   const attempts = [
-    `/fixtures?league=${LEAGUE}&season=${SEASON}`,
-    `/fixtures?league=${LEAGUE}&season=${SEASON}&from=2026-06-11&to=2026-07-19`
+    `/fixtures?league=${candidate.id}&season=${candidate.season}`,
+    `/fixtures?league=${candidate.id}&season=${candidate.season}&from=${DATE_FROM}&to=${DATE_TO}`
   ];
 
   for (const path of attempts) {
     const fixtures = await api(path);
+    discovery.fixtureAttempts.push({ league: candidate.id, season: candidate.season, name: candidate.name, path, count: fixtures.length });
     console.log(`${path}: ${fixtures.length} jogos`);
     if (fixtures.length > 0) return fixtures;
+  }
+
+  return [];
+}
+
+async function fetchFixtures() {
+  const candidates = await discoverLeagueCandidates();
+
+  for (const candidate of candidates) {
+    const fixtures = await tryCandidateFixtures(candidate);
+    if (fixtures.length > 0) {
+      discovery.selected = candidate;
+      return fixtures;
+    }
   }
 
   return [];
@@ -108,19 +234,24 @@ const fixtures = await fetchFixtures();
 
 if (fixtures.length === 0) {
   const previousCount = previous?.matches?.length || 0;
-  const message = `API retornou zero jogos para league=${LEAGUE}, season=${SEASON}.`;
+  const message = `API retornou zero jogos para todos os candidatos de World Cup ${SEASON}.`;
+
+  discovery.updatedData = false;
+  discovery.message = previousCount > 0 ? `${message} Mantendo arquivo atual com ${previousCount} jogos.` : `${message} Não há base anterior para preservar.`;
+  await writeStatus();
 
   if (previousCount > 0) {
-    console.warn(`${message} Mantendo arquivo atual com ${previousCount} jogos.`);
+    console.warn(discovery.message);
     process.exit(0);
   }
 
-  throw new Error(`${message} Não há base anterior para preservar.`);
+  throw new Error(discovery.message);
 }
 
 let scorers = previous?.scorers || [];
 try {
-  const top = await api(`/players/topscorers?league=${LEAGUE}&season=${SEASON}`);
+  const leagueId = discovery.selected?.id || DEFAULT_LEAGUE;
+  const top = await api(`/players/topscorers?league=${leagueId}&season=${SEASON}`);
   const parsed = top.slice(0, 10).map(x => ({
     name: x.player?.name || "Jogador",
     team: teamName(x.statistics?.[0]?.team?.name),
@@ -137,15 +268,32 @@ const matches = fixtures.map(fixtureToMatch).filter(m => m.utcDate).sort((a, b) 
 
 if (matches.length === 0) {
   const previousCount = previous?.matches?.length || 0;
+  discovery.updatedData = false;
+  discovery.message = previousCount > 0
+    ? `Fixtures recebidas, mas nenhum jogo foi convertido. Mantendo ${previousCount} jogos anteriores.`
+    : "Fixtures recebidas, mas nenhum jogo foi convertido e não há base anterior.";
+  await writeStatus();
+
   if (previousCount > 0) {
-    console.warn(`Fixtures recebidas, mas nenhum jogo foi convertido. Mantendo ${previousCount} jogos anteriores.`);
+    console.warn(discovery.message);
     process.exit(0);
   }
-  throw new Error("Fixtures recebidas, mas nenhum jogo foi convertido e não há base anterior.");
+  throw new Error(discovery.message);
 }
 
+discovery.updatedData = true;
+discovery.message = `Atualizado com ${matches.length} jogos usando liga ${discovery.selected?.id || DEFAULT_LEAGUE}.`;
+await writeStatus();
+
 const data = {
-  meta: { lastUpdated: new Date().toISOString(), source: "API-Football/API-SPORTS", timezone: "America/Sao_Paulo" },
+  meta: {
+    lastUpdated: new Date().toISOString(),
+    source: "API-Football/API-SPORTS",
+    timezone: "America/Sao_Paulo",
+    apiFootballLeague: discovery.selected?.id || DEFAULT_LEAGUE,
+    apiFootballLeagueName: discovery.selected?.name || "Configured league",
+    apiFootballSeason: SEASON
+  },
   matches,
   scorers,
   favorites: previous?.favorites || [
