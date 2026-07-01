@@ -1,0 +1,122 @@
+{
+  "checkedAt": "2026-07-01T16:41:20.651Z",
+  "targetSeason": "2026",
+  "defaultLeague": "1",
+  "leagueQueries": [
+    {
+      "path": "/leagues?search=World%20Cup",
+      "count": 18
+    },
+    {
+      "path": "/leagues?search=FIFA",
+      "count": 5
+    },
+    {
+      "path": "/leagues?season=2026",
+      "count": 0
+    }
+  ],
+  "candidates": [
+    {
+      "id": "1",
+      "season": "2026",
+      "name": "World Cup",
+      "country": "World",
+      "type": "Cup",
+      "origin": "/leagues?search=World%20Cup",
+      "hasTargetSeason": true,
+      "score": 230
+    },
+    {
+      "id": "1213",
+      "season": "2026",
+      "name": "Kings World Cup Nations",
+      "country": "World",
+      "type": "Cup",
+      "origin": "/leagues?search=World%20Cup",
+      "hasTargetSeason": true,
+      "score": 130
+    },
+    {
+      "id": "1222",
+      "season": "2026",
+      "name": "FIFA Series",
+      "country": "World",
+      "type": "Cup",
+      "origin": "/leagues?search=FIFA",
+      "hasTargetSeason": true,
+      "score": 70
+    },
+    {
+      "id": "1168",
+      "season": "2026",
+      "name": "FIFA Intercontinental Cup",
+      "country": "World",
+      "type": "Cup",
+      "origin": "/leagues?search=FIFA",
+      "hasTargetSeason": false,
+      "score": 30
+    }
+  ],
+  "fixtureAttempts": [
+    {
+      "league": "1",
+      "season": "2026",
+      "name": "World Cup",
+      "path": "/fixtures?league=1&season=2026",
+      "count": 0
+    },
+    {
+      "league": "1",
+      "season": "2026",
+      "name": "World Cup",
+      "path": "/fixtures?league=1&season=2026&from=2026-06-11&to=2026-07-19",
+      "count": 0
+    },
+    {
+      "league": "1213",
+      "season": "2026",
+      "name": "Kings World Cup Nations",
+      "path": "/fixtures?league=1213&season=2026",
+      "count": 0
+    },
+    {
+      "league": "1213",
+      "season": "2026",
+      "name": "Kings World Cup Nations",
+      "path": "/fixtures?league=1213&season=2026&from=2026-06-11&to=2026-07-19",
+      "count": 0
+    },
+    {
+      "league": "1222",
+      "season": "2026",
+      "name": "FIFA Series",
+      "path": "/fixtures?league=1222&season=2026",
+      "count": 0
+    },
+    {
+      "league": "1222",
+      "season": "2026",
+      "name": "FIFA Series",
+      "path": "/fixtures?league=1222&season=2026&from=2026-06-11&to=2026-07-19",
+      "count": 0
+    },
+    {
+      "league": "1168",
+      "season": "2026",
+      "name": "FIFA Intercontinental Cup",
+      "path": "/fixtures?league=1168&season=2026",
+      "count": 0
+    },
+    {
+      "league": "1168",
+      "season": "2026",
+      "name": "FIFA Intercontinental Cup",
+      "path": "/fixtures?league=1168&season=2026&from=2026-06-11&to=2026-07-19",
+      "count": 0
+    }
+  ],
+  "selected": null,
+  "updatedData": false,
+  "message": "API retornou zero jogos para todos os candidatos de World Cup 2026. Mantendo arquivo atual com 20 jogos."
+}
