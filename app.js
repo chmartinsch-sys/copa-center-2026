@@ -26,8 +26,9 @@ function renderStats(){const scorers=(DATA.scorers||[]).slice(0,10).map((s,i)=>`
 function renderStatus(){const last=DATA.meta?.lastUpdated?new Date(DATA.meta.lastUpdated):null;$("#updatePill").textContent=last?`Atualizado ${fmtDate(last)} · ${fmtTime(last)}`:"Dados carregados";$("#dataStatus").innerHTML=`Fonte: ${DATA.meta?.source||"base local"}. Atualização automática prevista às 07h17, 15h17 e 22h47 de Brasília. Resultados oficiais, projeções e palpites são exibidos separadamente.`}
 function renderAll(){renderSummary();renderMatches();renderBrazil();renderBracket();renderStats();renderStatus()}
 async function load(){try{const res=await fetch(`data/copa2026.json?v=${Date.now()}`,{cache:"no-store"});DATA=await res.json();renderAll()}catch(e){$("#quickSummary").innerHTML=`<div class="empty">Não foi possível carregar os dados.</div>`;$("#dataStatus").textContent="Erro ao carregar data/copa2026.json."}}
+async function disableOldServiceWorker(){if(!('serviceWorker'in navigator))return;try{const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(reg=>reg.unregister()));}catch{}}
 $$('.filter-chip').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;renderMatches()}));
 $('#teamSearch').addEventListener('input',e=>{query=e.target.value;renderMatches()});
 $('#refreshBtn').addEventListener('click',load);
-if('serviceWorker'in navigator){navigator.serviceWorker.register('service-worker.js').then(reg=>reg.update()).catch(()=>{})}
+disableOldServiceWorker();
 load();
