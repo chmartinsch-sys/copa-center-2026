@@ -1,0 +1,19 @@
+{
+  "name": "Copa Center 2026",
+  "short_name": "Copa Center",
+  "description": "App PWA para acompanhar jogos, resultados, Brasil, chaveamento e artilharia da Copa do Mundo 2026.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#081B16",
+  "theme_color": "#081B16",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
