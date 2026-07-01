@@ -32,4 +32,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Atualiza dados da Copa 2026"
-          file_pattern: "data/copa2026.json"
+          file_pattern: "data/copa2026.json data/api-football-status.json"
