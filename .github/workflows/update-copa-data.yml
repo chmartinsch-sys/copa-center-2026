@@ -1,0 +1,35 @@
+name: Atualizar dados da Copa
+
+on:
+  workflow_dispatch:
+  schedule:
+    # GitHub usa UTC. 10:00 UTC = 07:00 em Brasília.
+    - cron: "0 10 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Atualizar data/copa2026.json
+        run: npm run update:data
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          API_FOOTBALL_LEAGUE: "1"
+          API_FOOTBALL_SEASON: "2026"
+
+      - name: Commit automático
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Atualiza dados da Copa 2026"
+          file_pattern: "data/copa2026.json"
