@@ -1,64 +1,42 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-01T15:20:00.000Z",
-    "source": "Base inicial + API-Football preparada",
+    "lastUpdated": "2026-07-01T16:07:09.068Z",
+    "source": "API-Football/API-SPORTS",
     "timezone": "America/Sao_Paulo"
   },
-  "matches": [
-    {"id":"53452545","utcDate":"2026-06-28T19:00:00.000Z","stage":"round32","home":"África do Sul","away":"Canadá","homeScore":0,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Canadá avançou"},
-    {"id":"53452557","utcDate":"2026-06-29T17:00:00.000Z","stage":"round32","home":"Brasil","away":"Japão","homeScore":2,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Brasil avançou"},
-    {"id":"53452541","utcDate":"2026-06-29T20:30:00.000Z","stage":"round32","home":"Alemanha","away":"Paraguai","homeScore":1,"awayScore":1,"status":"finished","statusShort":"PEN","venue":"","projection":"Paraguai avançou nos pênaltis"},
-    {"id":"53452547","utcDate":"2026-06-30T01:00:00.000Z","stage":"round32","home":"Holanda","away":"Marrocos","homeScore":1,"awayScore":1,"status":"finished","statusShort":"PEN","venue":"","projection":"Marrocos avançou nos pênaltis"},
-    {"id":"53452561","utcDate":"2026-06-30T17:00:00.000Z","stage":"round32","home":"Costa do Marfim","away":"Noruega","homeScore":1,"awayScore":2,"status":"finished","statusShort":"FT","venue":"","projection":"Noruega avançou"},
-    {"id":"53452543","utcDate":"2026-06-30T21:00:00.000Z","stage":"round32","home":"França","away":"Suécia","homeScore":3,"awayScore":0,"status":"finished","statusShort":"FT","venue":"","projection":"França avançou"},
-    {"id":"53452563","utcDate":"2026-07-01T02:00:00.000Z","stage":"round32","home":"México","away":"Equador","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"","projection":"México avançou"},
-    {"id":"53452565","utcDate":"2026-07-01T16:00:00.000Z","stage":"round32","home":"Inglaterra","away":"RD Congo","status":"scheduled","statusShort":"NS","venue":"","favorite":"Inglaterra"},
-    {"id":"53452555","utcDate":"2026-07-01T20:00:00.000Z","stage":"round32","home":"Bélgica","away":"Senegal","status":"scheduled","statusShort":"NS","venue":"","favorite":"Bélgica"},
-    {"id":"53452553","utcDate":"2026-07-02T00:00:00.000Z","stage":"round32","home":"Estados Unidos","away":"Bósnia e Herzegovina","status":"scheduled","statusShort":"NS","venue":"","favorite":"Estados Unidos"},
-    {"id":"53452551","utcDate":"2026-07-02T19:00:00.000Z","stage":"round32","home":"Espanha","away":"Áustria","status":"scheduled","statusShort":"NS","venue":"","favorite":"Espanha"},
-    {"id":"53452549","utcDate":"2026-07-02T23:00:00.000Z","stage":"round32","home":"Portugal","away":"Croácia","status":"scheduled","statusShort":"NS","venue":"","favorite":"Portugal"},
-    {"id":"53452505","utcDate":"2026-07-03T03:00:00.000Z","stage":"round32","home":"Suíça","away":"Argélia","status":"scheduled","statusShort":"NS","venue":"","favorite":"Suíça"},
-    {"id":"53452503","utcDate":"2026-07-03T18:00:00.000Z","stage":"round32","home":"Austrália","away":"Egito","status":"scheduled","statusShort":"NS","venue":"","favorite":"Egito"},
-    {"id":"53452569","utcDate":"2026-07-03T22:00:00.000Z","stage":"round32","home":"Argentina","away":"Cabo Verde","status":"scheduled","statusShort":"NS","venue":"","favorite":"Argentina"},
-    {"id":"53452507","utcDate":"2026-07-04T01:30:00.000Z","stage":"round32","home":"Colômbia","away":"Gana","status":"scheduled","statusShort":"NS","venue":"","favorite":"Colômbia"},
-    {"id":"53452511","utcDate":"2026-07-04T17:00:00.000Z","stage":"oitavas","home":"Canadá","away":"Marrocos","status":"scheduled","statusShort":"NS","venue":"","favorite":"Marrocos"},
-    {"id":"53452509","utcDate":"2026-07-04T21:00:00.000Z","stage":"oitavas","home":"Paraguai","away":"França","status":"scheduled","statusShort":"NS","venue":"","favorite":"França"},
-    {"id":"53452517","utcDate":"2026-07-05T20:00:00.000Z","stage":"oitavas","home":"Brasil","away":"Noruega","status":"scheduled","statusShort":"NS","venue":"","favorite":"Brasil"},
-    {"id":"53452519","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"México","away":"Vencedor de Inglaterra x RD Congo","status":"scheduled","statusShort":"NS","venue":"","favorite":"A definir"}
-  ],
-  "scorers": [
-    {"name":"Kylian Mbappé","team":"França","goals":5},
-    {"name":"Erling Haaland","team":"Noruega","goals":4},
-    {"name":"Vinícius Júnior","team":"Brasil","goals":3},
-    {"name":"Lionel Messi","team":"Argentina","goals":3},
-    {"name":"Harry Kane","team":"Inglaterra","goals":3}
-  ],
+  "matches": [],
+  "scorers": [],
   "favorites": [
-    {"team":"Espanha","chance":25},
-    {"team":"França","chance":20},
-    {"team":"Argentina","chance":18},
-    {"team":"Brasil","chance":17},
-    {"team":"Inglaterra","chance":8},
-    {"team":"Portugal","chance":5}
+    {
+      "team": "Espanha",
+      "chance": 25
+    },
+    {
+      "team": "França",
+      "chance": 20
+    },
+    {
+      "team": "Argentina",
+      "chance": 18
+    },
+    {
+      "team": "Brasil",
+      "chance": 17
+    },
+    {
+      "team": "Inglaterra",
+      "chance": 8
+    },
+    {
+      "team": "Portugal",
+      "chance": 5
+    }
   ],
-  "brazilPath": [
-    {"phase":"Oitavas","value":"Noruega"},
-    {"phase":"Quartas prováveis","value":"México ou Inglaterra"},
-    {"phase":"Semifinal provável","value":"Argentina ou Colômbia"},
-    {"phase":"Final provável","value":"Espanha ou França"}
-  ],
+  "brazilPath": [],
   "bracket": [
-    {"phase":"Oitavas confirmadas","items":[
-      {"match":"Canadá x Marrocos","status":"04/07 · 14h BRT"},
-      {"match":"Paraguai x França","status":"04/07 · 18h BRT"},
-      {"match":"Brasil x Noruega","status":"05/07 · 17h BRT"},
-      {"match":"México x vencedor de Inglaterra/RD Congo","status":"05/07 · 21h BRT"}
-    ]},
-    {"phase":"Projeção atual","items":[
-      {"match":"França x Marrocos","pick":"França"},
-      {"match":"Brasil x Inglaterra","pick":"Brasil"},
-      {"match":"Espanha x Bélgica/EUA","pick":"Espanha"},
-      {"match":"Argentina x Colômbia/Suíça","pick":"Argentina"}
-    ]}
+    {
+      "phase": "Próximos jogos do mata-mata",
+      "items": []
+    }
   ]
 }
