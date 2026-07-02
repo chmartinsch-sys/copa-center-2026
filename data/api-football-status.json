@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-07-01T22:50:18.560Z",
+  "checkedAt": "2026-07-02T10:52:00.000Z",
   "targetSeason": "2026",
   "defaultLeague": "1",
   "leagueQueries": [
@@ -118,5 +118,19 @@
   ],
   "selected": null,
   "updatedData": false,
-  "message": "API retornou zero jogos para todos os candidatos de World Cup 2026. Mantendo arquivo atual com 20 jogos."
+  "message": "API-Football segue retornando zero jogos para todos os candidatos de World Cup 2026. data/copa2026.json foi mantido com 21 jogos, incluindo resultados confirmados por fallback web até Estados Unidos 2 x 0 Bósnia e Herzegovina. Próximas partidas ainda não iniciadas não foram alteradas.",
+  "fallbackWeb": {
+    "used": true,
+    "action": "Nenhuma alteração em data/copa2026.json nesta execução; apenas validação de consistência e atualização do diagnóstico.",
+    "confirmedLatestFinishedMatches": [
+      "Inglaterra 2 x 1 RD Congo",
+      "Bélgica 3 x 2 Senegal após prorrogação",
+      "Estados Unidos 2 x 0 Bósnia e Herzegovina"
+    ],
+    "nextScheduledMatches": [
+      "Espanha x Áustria em 2026-07-02T19:00:00.000Z",
+      "Portugal x Croácia em 2026-07-02T23:00:00.000Z",
+      "Suíça x Argélia em 2026-07-03T03:00:00.000Z"
+    ]
+  }
 }
