@@ -5,10 +5,8 @@ on:
   schedule:
     # GitHub usa UTC.
     # 10:17 UTC = 07:17 em Brasília.
-    # 18:17 UTC = 15:17 em Brasília.
-    # 01:47 UTC = 22:47 em Brasília.
-    - cron: "17 10,18 * * *"
-    - cron: "47 1 * * *"
+    # A API-Football fica como checagem diária; o agente ChatGPT cobre as atualizações práticas do dia.
+    - cron: "17 10 * * *"
 
 permissions:
   contents: write
