@@ -1,9 +1,9 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-01T15:20:00.000Z",
-    "source": "Base inicial + API-Football preparada",
+    "lastUpdated": "2026-07-02T02:18:39.000Z",
+    "source": "Base inicial + API-Football preparada + fallback web validado",
     "timezone": "America/Sao_Paulo",
-    "note": "Base restaurada após resposta vazia da API. O atualizador foi protegido para não sobrescrever com zero jogos."
+    "note": "API-Football retornou zero jogos; resultados atualizados por fallback web somente com informações confirmadas em fontes confiáveis. O atualizador foi protegido para não sobrescrever com zero jogos."
   },
   "matches": [
     {"id":"53452545","utcDate":"2026-06-28T19:00:00.000Z","stage":"round32","home":"África do Sul","away":"Canadá","homeScore":0,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Canadá avançou"},
@@ -13,9 +13,9 @@
     {"id":"53452561","utcDate":"2026-06-30T17:00:00.000Z","stage":"round32","home":"Costa do Marfim","away":"Noruega","homeScore":1,"awayScore":2,"status":"finished","statusShort":"FT","venue":"","projection":"Noruega avançou"},
     {"id":"53452543","utcDate":"2026-06-30T21:00:00.000Z","stage":"round32","home":"França","away":"Suécia","homeScore":3,"awayScore":0,"status":"finished","statusShort":"FT","venue":"","projection":"França avançou"},
     {"id":"53452563","utcDate":"2026-07-01T02:00:00.000Z","stage":"round32","home":"México","away":"Equador","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"","projection":"México avançou"},
-    {"id":"53452565","utcDate":"2026-07-01T16:00:00.000Z","stage":"round32","home":"Inglaterra","away":"RD Congo","status":"scheduled","statusShort":"NS","venue":"","favorite":"Inglaterra"},
-    {"id":"53452555","utcDate":"2026-07-01T20:00:00.000Z","stage":"round32","home":"Bélgica","away":"Senegal","status":"scheduled","statusShort":"NS","venue":"","favorite":"Bélgica"},
-    {"id":"53452553","utcDate":"2026-07-02T00:00:00.000Z","stage":"round32","home":"Estados Unidos","away":"Bósnia e Herzegovina","status":"scheduled","statusShort":"NS","venue":"","favorite":"Estados Unidos"},
+    {"id":"53452565","utcDate":"2026-07-01T16:00:00.000Z","stage":"round32","home":"Inglaterra","away":"RD Congo","homeScore":2,"awayScore":1,"status":"finished","statusShort":"FT","venue":"Atlanta Stadium","projection":"Inglaterra avançou"},
+    {"id":"53452555","utcDate":"2026-07-01T20:00:00.000Z","stage":"round32","home":"Bélgica","away":"Senegal","homeScore":3,"awayScore":2,"status":"finished","statusShort":"AET","venue":"Seattle","projection":"Bélgica avançou após prorrogação"},
+    {"id":"53452553","utcDate":"2026-07-02T00:00:00.000Z","stage":"round32","home":"Estados Unidos","away":"Bósnia e Herzegovina","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Santa Clara","projection":"Estados Unidos avançou"},
     {"id":"53452551","utcDate":"2026-07-02T19:00:00.000Z","stage":"round32","home":"Espanha","away":"Áustria","status":"scheduled","statusShort":"NS","venue":"","favorite":"Espanha"},
     {"id":"53452549","utcDate":"2026-07-02T23:00:00.000Z","stage":"round32","home":"Portugal","away":"Croácia","status":"scheduled","statusShort":"NS","venue":"","favorite":"Portugal"},
     {"id":"53452505","utcDate":"2026-07-03T03:00:00.000Z","stage":"round32","home":"Suíça","away":"Argélia","status":"scheduled","statusShort":"NS","venue":"","favorite":"Suíça"},
@@ -25,14 +25,15 @@
     {"id":"53452511","utcDate":"2026-07-04T17:00:00.000Z","stage":"oitavas","home":"Canadá","away":"Marrocos","status":"scheduled","statusShort":"NS","venue":"","favorite":"Marrocos"},
     {"id":"53452509","utcDate":"2026-07-04T21:00:00.000Z","stage":"oitavas","home":"Paraguai","away":"França","status":"scheduled","statusShort":"NS","venue":"","favorite":"França"},
     {"id":"53452517","utcDate":"2026-07-05T20:00:00.000Z","stage":"oitavas","home":"Brasil","away":"Noruega","status":"scheduled","statusShort":"NS","venue":"","favorite":"Brasil"},
-    {"id":"53452519","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"México","away":"Vencedor de Inglaterra x RD Congo","status":"scheduled","statusShort":"NS","venue":"","favorite":"A definir"}
+    {"id":"53452519","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"México","away":"Inglaterra","status":"scheduled","statusShort":"NS","venue":"","favorite":"Inglaterra"},
+    {"id":"53452521","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Bélgica","away":"Estados Unidos","status":"scheduled","statusShort":"NS","venue":"","favorite":"Bélgica"}
   ],
   "scorers": [
     {"name":"Kylian Mbappé","team":"França","goals":5},
+    {"name":"Harry Kane","team":"Inglaterra","goals":5},
     {"name":"Erling Haaland","team":"Noruega","goals":4},
     {"name":"Vinícius Júnior","team":"Brasil","goals":3},
-    {"name":"Lionel Messi","team":"Argentina","goals":3},
-    {"name":"Harry Kane","team":"Inglaterra","goals":3}
+    {"name":"Lionel Messi","team":"Argentina","goals":3}
   ],
   "favorites": [
     {"team":"Espanha","chance":25},
@@ -53,12 +54,13 @@
       {"match":"Canadá x Marrocos","status":"04/07 · 14h BRT"},
       {"match":"Paraguai x França","status":"04/07 · 18h BRT"},
       {"match":"Brasil x Noruega","status":"05/07 · 17h BRT"},
-      {"match":"México x vencedor de Inglaterra/RD Congo","status":"05/07 · 21h BRT"}
+      {"match":"México x Inglaterra","status":"05/07 · 21h BRT"},
+      {"match":"Bélgica x Estados Unidos","status":"Data/horário a confirmar"}
     ]},
     {"phase":"Projeção atual","items":[
       {"match":"França x Marrocos","pick":"França"},
       {"match":"Brasil x Inglaterra","pick":"Brasil"},
-      {"match":"Espanha x Bélgica/EUA","pick":"Espanha"},
+      {"match":"Espanha x Bélgica/Estados Unidos","pick":"Espanha"},
       {"match":"Argentina x Colômbia/Suíça","pick":"Argentina"}
     ]}
   ]
