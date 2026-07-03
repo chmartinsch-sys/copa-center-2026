@@ -1,9 +1,9 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-03T11:22:00.000Z",
+    "lastUpdated": "2026-07-03T18:46:00.000Z",
     "source": "Base inicial + API-Football preparada + fallback web validado",
     "timezone": "America/Sao_Paulo",
-    "note": "API-Football retornou zero jogos; resultados e autores dos gols foram atualizados por fallback web somente com informações confirmadas em fontes confiáveis. O atualizador foi protegido para não sobrescrever com zero jogos."
+    "note": "API-Football retornou zero jogos; arquivo mantido e atualizado por fallback web somente com informações confirmadas em fontes confiáveis. Live de Austrália x Egito atualizado com placar parcial confirmado."
   },
   "matches": [
     {
@@ -235,9 +235,23 @@
         {"team": "Suíça", "player": "Dan Ndoye"}
       ]
     },
-    {"id":"53452503","utcDate":"2026-07-03T18:00:00.000Z","stage":"round32","home":"Austrália","away":"Egito","status":"scheduled","statusShort":"NS","venue":"","favorite":"Egito"},
-    {"id":"53452569","utcDate":"2026-07-03T22:00:00.000Z","stage":"round32","home":"Argentina","away":"Cabo Verde","status":"scheduled","statusShort":"NS","venue":"","favorite":"Argentina"},
-    {"id":"53452507","utcDate":"2026-07-04T01:30:00.000Z","stage":"round32","home":"Colômbia","away":"Gana","status":"scheduled","statusShort":"NS","venue":"","favorite":"Colômbia"},
+    {
+      "id": "53452503",
+      "utcDate": "2026-07-03T18:00:00.000Z",
+      "stage": "round32",
+      "home": "Austrália",
+      "away": "Egito",
+      "homeScore": 0,
+      "awayScore": 1,
+      "status": "in_progress",
+      "statusShort": "1H",
+      "venue": "AT&T Stadium, Dallas",
+      "goals": [
+        {"team": "Egito", "player": "Emam Ashour", "minute": "13"}
+      ]
+    },
+    {"id":"53452569","utcDate":"2026-07-03T22:00:00.000Z","stage":"round32","home":"Argentina","away":"Cabo Verde","status":"scheduled","statusShort":"NS","venue":"Miami","favorite":"Argentina"},
+    {"id":"53452507","utcDate":"2026-07-04T01:30:00.000Z","stage":"round32","home":"Colômbia","away":"Gana","status":"scheduled","statusShort":"NS","venue":"Kansas City","favorite":"Colômbia"},
     {"id":"53452511","utcDate":"2026-07-04T17:00:00.000Z","stage":"oitavas","home":"Canadá","away":"Marrocos","status":"scheduled","statusShort":"NS","venue":"","favorite":"Marrocos"},
     {"id":"53452509","utcDate":"2026-07-04T21:00:00.000Z","stage":"oitavas","home":"Paraguai","away":"França","status":"scheduled","statusShort":"NS","venue":"","favorite":"França"},
     {"id":"53452517","utcDate":"2026-07-05T20:00:00.000Z","stage":"oitavas","home":"Brasil","away":"Noruega","status":"scheduled","statusShort":"NS","venue":"","favorite":"Brasil"},
