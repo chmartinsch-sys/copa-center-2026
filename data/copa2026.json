@@ -1,9 +1,9 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-03T02:17:10.000Z",
+    "lastUpdated": "2026-07-03T10:45:09.000Z",
     "source": "Base inicial + API-Football preparada + fallback web validado",
     "timezone": "America/Sao_Paulo",
-    "note": "API-Football retornou zero jogos; resultados atualizados por fallback web somente com informações confirmadas em fontes confiáveis. O atualizador foi protegido para não sobrescrever com zero jogos."
+    "note": "API-Football retornou zero jogos; resultados atualizados por fallback web somente com informações confirmadas em fontes confiáveis. O atualizador foi protegido para não sobrescrever com zero jogos. Suíça 2 x 0 Argélia confirmado por fallback web em 03/07/2026."
   },
   "matches": [
     {"id":"53452545","utcDate":"2026-06-28T19:00:00.000Z","stage":"round32","home":"África do Sul","away":"Canadá","homeScore":0,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Canadá avançou"},
@@ -18,7 +18,7 @@
     {"id":"53452553","utcDate":"2026-07-02T00:00:00.000Z","stage":"round32","home":"Estados Unidos","away":"Bósnia e Herzegovina","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Santa Clara","projection":"Estados Unidos avançou"},
     {"id":"53452551","utcDate":"2026-07-02T19:00:00.000Z","stage":"round32","home":"Espanha","away":"Áustria","homeScore":3,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Inglewood","projection":"Espanha avançou"},
     {"id":"53452549","utcDate":"2026-07-02T23:00:00.000Z","stage":"round32","home":"Portugal","away":"Croácia","homeScore":2,"awayScore":1,"status":"finished","statusShort":"FT","venue":"Toronto","projection":"Portugal avançou"},
-    {"id":"53452505","utcDate":"2026-07-03T03:00:00.000Z","stage":"round32","home":"Suíça","away":"Argélia","status":"scheduled","statusShort":"NS","venue":"","favorite":"Suíça"},
+    {"id":"53452505","utcDate":"2026-07-03T03:00:00.000Z","stage":"round32","home":"Suíça","away":"Argélia","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"BC Place, Vancouver","projection":"Suíça avançou"},
     {"id":"53452503","utcDate":"2026-07-03T18:00:00.000Z","stage":"round32","home":"Austrália","away":"Egito","status":"scheduled","statusShort":"NS","venue":"","favorite":"Egito"},
     {"id":"53452569","utcDate":"2026-07-03T22:00:00.000Z","stage":"round32","home":"Argentina","away":"Cabo Verde","status":"scheduled","statusShort":"NS","venue":"","favorite":"Argentina"},
     {"id":"53452507","utcDate":"2026-07-04T01:30:00.000Z","stage":"round32","home":"Colômbia","away":"Gana","status":"scheduled","statusShort":"NS","venue":"","favorite":"Colômbia"},
@@ -27,7 +27,8 @@
     {"id":"53452517","utcDate":"2026-07-05T20:00:00.000Z","stage":"oitavas","home":"Brasil","away":"Noruega","status":"scheduled","statusShort":"NS","venue":"","favorite":"Brasil"},
     {"id":"53452519","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"México","away":"Inglaterra","status":"scheduled","statusShort":"NS","venue":"","favorite":"Inglaterra"},
     {"id":"53452521","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Bélgica","away":"Estados Unidos","status":"scheduled","statusShort":"NS","venue":"Seattle","favorite":"Bélgica"},
-    {"id":"53452523","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Espanha","away":"Portugal","status":"scheduled","statusShort":"NS","venue":"Dallas","favorite":"Espanha"}
+    {"id":"53452523","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Espanha","away":"Portugal","status":"scheduled","statusShort":"NS","venue":"Dallas","favorite":"Espanha"},
+    {"id":"53452525","utcDate":"2026-07-07T00:00:00.000Z","stage":"oitavas","home":"Suíça","away":"Colômbia/Gana","status":"scheduled","statusShort":"NS","venue":"Vancouver","favorite":"Suíça"}
   ],
   "scorers": [
     {"name":"Kylian Mbappé","team":"França","goals":5},
@@ -47,7 +48,7 @@
   "brazilPath": [
     {"phase":"Oitavas","value":"Noruega"},
     {"phase":"Quartas prováveis","value":"México ou Inglaterra"},
-    {"phase":"Semifinal provável","value":"Argentina ou Colômbia"},
+    {"phase":"Semifinal provável","value":"Argentina ou Colômbia/Suíça"},
     {"phase":"Final provável","value":"Espanha, Portugal ou França"}
   ],
   "bracket": [
@@ -57,7 +58,8 @@
       {"match":"Brasil x Noruega","status":"05/07 · 17h BRT"},
       {"match":"México x Inglaterra","status":"05/07 · 21h BRT"},
       {"match":"Bélgica x Estados Unidos","status":"06/07 · horário a confirmar"},
-      {"match":"Espanha x Portugal","status":"06/07 · horário a confirmar"}
+      {"match":"Espanha x Portugal","status":"06/07 · horário a confirmar"},
+      {"match":"Suíça x Colômbia/Gana","status":"06/07 ou 07/07 · horário a confirmar"}
     ]},
     {"phase":"Projeção atual","items":[
       {"match":"França x Marrocos","pick":"França"},
