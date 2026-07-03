@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-07-03T16:08:54.314Z",
+  "checkedAt": "2026-07-03T18:46:00.000Z",
   "targetSeason": "2026",
   "defaultLeague": "1",
   "leagueQueries": [
@@ -117,6 +117,15 @@
     }
   ],
   "selected": null,
-  "updatedData": false,
-  "message": "API retornou zero jogos para todos os candidatos de World Cup 2026. Mantendo arquivo atual com 23 jogos."
+  "updatedData": true,
+  "fallbackWeb": {
+    "used": true,
+    "reason": "API-Football retornou zero jogos para todos os candidatos.",
+    "lastConfirmedUpdate": "Austrália 0-1 Egito, jogo em andamento, gol de Emam Ashour aos 13 minutos confirmado por The Guardian/The Times.",
+    "sources": [
+      "https://www.theguardian.com/football/live/2026/jul/03/australia-v-egypt-world-cup-2026-last-32-live",
+      "https://www.thetimes.com/sport/football/world-cup/article/world-cup-2026-latest-news-live-score-team-updates-argentina-egypt-ghana-ngnph69nn"
+    ]
+  },
+  "message": "API retornou zero jogos. data/copa2026.json foi atualizado por fallback web validado, sem apagar dados existentes."
 }
