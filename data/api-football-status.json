@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-07-04T02:15:23.000Z",
+  "checkedAt": "2026-07-04T10:45:13.000Z",
   "targetSeason": "2026",
   "defaultLeague": "1",
   "leagueQueries": [
@@ -27,15 +27,14 @@
   "updatedData": true,
   "fallbackWeb": {
     "used": true,
-    "reason": "API-Football retornou zero jogos para todos os candidatos; dados mantidos por fallback web validado.",
-    "lastConfirmedUpdate": "Austrália 1-1 Egito, Egito 4-2 nos pênaltis; Argentina 3-2 Cabo Verde após prorrogação; Colômbia 1-0 Gana no intervalo.",
+    "reason": "API-Football retornou zero jogos para todos os candidatos; dados mantidos e atualizados por fallback web validado.",
+    "lastConfirmedUpdate": "Colômbia 1-0 Gana; gol de Jhon Arias aos 14 minutos; Colômbia avançou e enfrentará a Suíça em Vancouver.",
     "sources": [
-      "https://www.reuters.com/sports/soccer/egypt-beat-australia-penalties-reach-world-cup-round-16-2026-07-03/",
-      "https://www.theguardian.com/football/2026/jul/03/australia-egypt-world-cup-2026-last-32-match-report",
-      "https://apnews.com/article/64fe1029d7f5ca97976cd5ac09075c28",
-      "https://www.theguardian.com/football/live/2026/jul/03/argentina-v-cape-verde-world-cup-2026-last-32-live",
+      "https://www.reuters.com/sports/soccer/colombia-beat-ghana-1-0-set-up-switzerland-showdown-2026-07-04/",
+      "https://www.theguardian.com/football/2026/jul/04/colombia-ghana-world-cup-2026-last-32-match-report",
       "https://www.theguardian.com/football/live/2026/jul/04/colombia-v-ghana-world-cup-2026-last-32-live",
-      "https://www.thetimes.com/sport/football/world-cup/article/world-cup-2026-latest-news-live-score-team-updates-argentina-egypt-ghana-ngnph69nn"
+      "https://www.reuters.com/sports/soccer/egypt-beat-australia-penalties-reach-world-cup-round-16-2026-07-03/",
+      "https://apnews.com/article/64fe1029d7f5ca97976cd5ac09075c28"
     ]
   },
   "message": "API retornou zero jogos. data/copa2026.json foi atualizado por fallback web validado, sem apagar dados existentes."
