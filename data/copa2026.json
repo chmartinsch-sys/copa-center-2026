@@ -1,9 +1,9 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-04T02:15:23.000Z",
+    "lastUpdated": "2026-07-04T10:45:13.000Z",
     "source": "Base inicial + API-Football preparada + fallback web validado",
     "timezone": "America/Sao_Paulo",
-    "note": "API-Football retornou zero jogos; arquivo mantido e atualizado por fallback web somente com informações confirmadas em fontes confiáveis. Atualizados Austrália x Egito, Argentina x Cabo Verde e parcial confirmado de Colômbia x Gana."
+    "note": "API-Football retornou zero jogos; arquivo mantido e atualizado por fallback web somente com informações confirmadas em fontes confiáveis. Atualizado resultado final de Colômbia x Gana e confronto Suíça x Colômbia."
   },
   "matches": [
     {"id":"53452545","utcDate":"2026-06-28T19:00:00.000Z","stage":"round32","home":"África do Sul","away":"Canadá","homeScore":0,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Canadá avançou","goals":[{"team":"Canadá","player":"Stephen Eustáquio","minute":"90+2"}]},
@@ -21,7 +21,7 @@
     {"id":"53452505","utcDate":"2026-07-03T03:00:00.000Z","stage":"round32","home":"Suíça","away":"Argélia","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"BC Place, Vancouver","projection":"Suíça avançou","goals":[{"team":"Suíça","player":"Breel Embolo","minute":"10"},{"team":"Suíça","player":"Dan Ndoye"}]},
     {"id":"53452503","utcDate":"2026-07-03T18:00:00.000Z","stage":"round32","home":"Austrália","away":"Egito","homeScore":1,"awayScore":1,"penaltyHomeScore":2,"penaltyAwayScore":4,"status":"finished","statusShort":"PEN","venue":"AT&T Stadium, Dallas","projection":"Egito avançou nos pênaltis","winner":"Egito","goals":[{"team":"Egito","player":"Emam Ashour","minute":"13"},{"team":"Austrália","player":"Mohamed Hany","detail":"gol contra"}]},
     {"id":"53452569","utcDate":"2026-07-03T22:00:00.000Z","stage":"round32","home":"Argentina","away":"Cabo Verde","homeScore":3,"awayScore":2,"status":"finished","statusShort":"AET","venue":"Hard Rock Stadium, Miami Gardens","projection":"Argentina avançou após prorrogação","winner":"Argentina","goals":[{"team":"Argentina","player":"Lionel Messi"},{"team":"Cabo Verde","player":"Deroy Duarte","minute":"59"},{"team":"Argentina","player":"Lisandro Martínez","detail":"prorrogação"},{"team":"Cabo Verde","player":"Sidny Lopes Cabral","detail":"prorrogação"},{"team":"Argentina","player":"Cristian Romero","detail":"prorrogação"}]},
-    {"id":"53452507","utcDate":"2026-07-04T01:30:00.000Z","stage":"round32","home":"Colômbia","away":"Gana","homeScore":1,"awayScore":0,"status":"in_progress","statusShort":"HT","venue":"Arrowhead Stadium, Kansas City","goals":[{"team":"Colômbia","player":"Jhon Arias","minute":"14"}]},
+    {"id":"53452507","utcDate":"2026-07-04T01:30:00.000Z","stage":"round32","home":"Colômbia","away":"Gana","homeScore":1,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Arrowhead Stadium, Kansas City","projection":"Colômbia avançou","winner":"Colômbia","goals":[{"team":"Colômbia","player":"Jhon Arias","minute":"14"}]},
     {"id":"53452511","utcDate":"2026-07-04T17:00:00.000Z","stage":"oitavas","home":"Canadá","away":"Marrocos","status":"scheduled","statusShort":"NS","venue":"","favorite":"Marrocos"},
     {"id":"53452509","utcDate":"2026-07-04T21:00:00.000Z","stage":"oitavas","home":"Paraguai","away":"França","status":"scheduled","statusShort":"NS","venue":"","favorite":"França"},
     {"id":"53452517","utcDate":"2026-07-05T20:00:00.000Z","stage":"oitavas","home":"Brasil","away":"Noruega","status":"scheduled","statusShort":"NS","venue":"","favorite":"Brasil"},
@@ -29,7 +29,7 @@
     {"id":"53452521","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Bélgica","away":"Estados Unidos","status":"scheduled","statusShort":"NS","venue":"Seattle","favorite":"Bélgica"},
     {"id":"53452523","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Espanha","away":"Portugal","status":"scheduled","statusShort":"NS","venue":"Dallas","favorite":"Espanha"},
     {"id":"53452527","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Argentina","away":"Egito","status":"scheduled","statusShort":"NS","venue":"Atlanta","favorite":"Argentina"},
-    {"id":"53452525","utcDate":"2026-07-07T00:00:00.000Z","stage":"oitavas","home":"Suíça","away":"Colômbia/Gana","status":"scheduled","statusShort":"NS","venue":"Vancouver","favorite":"Suíça"}
+    {"id":"53452525","utcDate":"2026-07-07T20:00:00.000Z","stage":"oitavas","home":"Suíça","away":"Colômbia","status":"scheduled","statusShort":"NS","venue":"BC Place, Vancouver","favorite":"Suíça"}
   ],
   "scorers": [
     {"name":"Lionel Messi","team":"Argentina","goals":7},
@@ -50,7 +50,7 @@
   "brazilPath": [
     {"phase":"Oitavas","value":"Noruega"},
     {"phase":"Quartas prováveis","value":"México ou Inglaterra"},
-    {"phase":"Semifinal provável","value":"Argentina, Egito, Colômbia/Gana ou Suíça"},
+    {"phase":"Semifinal provável","value":"Argentina, Egito, Colômbia ou Suíça"},
     {"phase":"Final provável","value":"Espanha, Portugal ou França"}
   ],
   "bracket": [
@@ -62,13 +62,13 @@
       {"match":"Bélgica x Estados Unidos","status":"06/07 · horário a confirmar"},
       {"match":"Espanha x Portugal","status":"06/07 · horário a confirmar"},
       {"match":"Argentina x Egito","status":"06/07 · horário a confirmar"},
-      {"match":"Suíça x Colômbia/Gana","status":"06/07 ou 07/07 · horário a confirmar"}
+      {"match":"Suíça x Colômbia","status":"07/07 · 17h BRT"}
     ]},
     {"phase":"Projeção atual","items":[
       {"match":"França x Marrocos","pick":"França"},
       {"match":"Brasil x Inglaterra","pick":"Brasil"},
       {"match":"Espanha x Bélgica/Estados Unidos","pick":"Espanha"},
-      {"match":"Argentina x Colômbia/Suíça/Egito","pick":"Argentina"}
+      {"match":"Argentina x Egito ou Colômbia x Suíça","pick":"Argentina"}
     ]}
   ]
 }
