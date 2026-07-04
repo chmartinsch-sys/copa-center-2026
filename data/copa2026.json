@@ -1,9 +1,9 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-04T11:45:00.000Z",
+    "lastUpdated": "2026-07-04T18:47:09.000Z",
     "source": "Base inicial + API-Football preparada + fallback web validado",
     "timezone": "America/Sao_Paulo",
-    "note": "API-Football retornou zero jogos; arquivo mantido e atualizado por fallback web somente com informações confirmadas em fontes confiáveis. Ajuste: preenchidos minutos dos gols confirmados nos jogos encerrados."
+    "note": "API-Football retornou zero jogos; arquivo mantido e atualizado por fallback web somente com informações confirmadas em fontes confiáveis. Ajuste: Canadá x Marrocos atualizado como jogo em andamento, com gol confirmado de Azzedine Ounahi aos 50'. Resultado final ainda não confirmado nesta checagem."
   },
   "matches": [
     {"id":"53452545","utcDate":"2026-06-28T19:00:00.000Z","stage":"round32","home":"África do Sul","away":"Canadá","homeScore":0,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Canadá avançou","goals":[{"team":"Canadá","player":"Stephen Eustáquio","minute":"90+2"}]},
@@ -22,8 +22,8 @@
     {"id":"53452503","utcDate":"2026-07-03T18:00:00.000Z","stage":"round32","home":"Austrália","away":"Egito","homeScore":1,"awayScore":1,"penaltyHomeScore":2,"penaltyAwayScore":4,"status":"finished","statusShort":"PEN","venue":"AT&T Stadium, Dallas","projection":"Egito avançou nos pênaltis","winner":"Egito","goals":[{"team":"Egito","player":"Emam Ashour","minute":"13"},{"team":"Austrália","player":"Mohamed Hany","minute":"55","detail":"gol contra"}]},
     {"id":"53452569","utcDate":"2026-07-03T22:00:00.000Z","stage":"round32","home":"Argentina","away":"Cabo Verde","homeScore":3,"awayScore":2,"status":"finished","statusShort":"AET","venue":"Hard Rock Stadium, Miami Gardens","projection":"Argentina avançou após prorrogação","winner":"Argentina","goals":[{"team":"Argentina","player":"Lionel Messi","minute":"29"},{"team":"Cabo Verde","player":"Deroy Duarte","minute":"59"},{"team":"Argentina","player":"Lisandro Martínez","minute":"93"},{"team":"Cabo Verde","player":"Sidny Lopes Cabral","minute":"105"},{"team":"Argentina","player":"Cristian Romero","minute":"111"}]},
     {"id":"53452507","utcDate":"2026-07-04T01:30:00.000Z","stage":"round32","home":"Colômbia","away":"Gana","homeScore":1,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Arrowhead Stadium, Kansas City","projection":"Colômbia avançou","winner":"Colômbia","goals":[{"team":"Colômbia","player":"Jhon Arias","minute":"14"}]},
-    {"id":"53452511","utcDate":"2026-07-04T17:00:00.000Z","stage":"oitavas","home":"Canadá","away":"Marrocos","status":"scheduled","statusShort":"NS","venue":"","favorite":"Marrocos"},
-    {"id":"53452509","utcDate":"2026-07-04T21:00:00.000Z","stage":"oitavas","home":"Paraguai","away":"França","status":"scheduled","statusShort":"NS","venue":"","favorite":"França"},
+    {"id":"53452511","utcDate":"2026-07-04T17:00:00.000Z","stage":"oitavas","home":"Canadá","away":"Marrocos","homeScore":0,"awayScore":1,"status":"live","statusShort":"2H","venue":"Houston","favorite":"Marrocos","goals":[{"team":"Marrocos","player":"Azzedine Ounahi","minute":"50"}]},
+    {"id":"53452509","utcDate":"2026-07-04T21:00:00.000Z","stage":"oitavas","home":"Paraguai","away":"França","status":"scheduled","statusShort":"NS","venue":"Philadelphia","favorite":"França"},
     {"id":"53452517","utcDate":"2026-07-05T20:00:00.000Z","stage":"oitavas","home":"Brasil","away":"Noruega","status":"scheduled","statusShort":"NS","venue":"","favorite":"Brasil"},
     {"id":"53452519","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"México","away":"Inglaterra","status":"scheduled","statusShort":"NS","venue":"","favorite":"Inglaterra"},
     {"id":"53452521","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Bélgica","away":"Estados Unidos","status":"scheduled","statusShort":"NS","venue":"Seattle","favorite":"Bélgica"},
@@ -55,7 +55,7 @@
   ],
   "bracket": [
     {"phase":"Oitavas confirmadas","items":[
-      {"match":"Canadá x Marrocos","status":"04/07 · 14h BRT"},
+      {"match":"Canadá x Marrocos","status":"Ao vivo · Marrocos 1-0"},
       {"match":"Paraguai x França","status":"04/07 · 18h BRT"},
       {"match":"Brasil x Noruega","status":"05/07 · 17h BRT"},
       {"match":"México x Inglaterra","status":"05/07 · 21h BRT"},
