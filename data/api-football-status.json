@@ -1,129 +1,40 @@
 {
-  "checkedAt": "2026-07-03T18:46:00.000Z",
+  "checkedAt": "2026-07-04T02:15:23.000Z",
   "targetSeason": "2026",
   "defaultLeague": "1",
   "leagueQueries": [
-    {
-      "path": "/leagues?search=World%20Cup",
-      "count": 18
-    },
-    {
-      "path": "/leagues?search=FIFA",
-      "count": 5
-    },
-    {
-      "path": "/leagues?season=2026",
-      "count": 0
-    }
+    {"path":"/leagues?search=World%20Cup","count":18},
+    {"path":"/leagues?search=FIFA","count":5},
+    {"path":"/leagues?season=2026","count":0}
   ],
   "candidates": [
-    {
-      "id": "1",
-      "season": "2026",
-      "name": "World Cup",
-      "country": "World",
-      "type": "Cup",
-      "origin": "/leagues?search=World%20Cup",
-      "hasTargetSeason": true,
-      "score": 230
-    },
-    {
-      "id": "1213",
-      "season": "2026",
-      "name": "Kings World Cup Nations",
-      "country": "World",
-      "type": "Cup",
-      "origin": "/leagues?search=World%20Cup",
-      "hasTargetSeason": true,
-      "score": 130
-    },
-    {
-      "id": "1222",
-      "season": "2026",
-      "name": "FIFA Series",
-      "country": "World",
-      "type": "Cup",
-      "origin": "/leagues?search=FIFA",
-      "hasTargetSeason": true,
-      "score": 70
-    },
-    {
-      "id": "1168",
-      "season": "2026",
-      "name": "FIFA Intercontinental Cup",
-      "country": "World",
-      "type": "Cup",
-      "origin": "/leagues?search=FIFA",
-      "hasTargetSeason": false,
-      "score": 30
-    }
+    {"id":"1","season":"2026","name":"World Cup","country":"World","type":"Cup","origin":"/leagues?search=World%20Cup","hasTargetSeason":true,"score":230},
+    {"id":"1213","season":"2026","name":"Kings World Cup Nations","country":"World","type":"Cup","origin":"/leagues?search=World%20Cup","hasTargetSeason":true,"score":130},
+    {"id":"1222","season":"2026","name":"FIFA Series","country":"World","type":"Cup","origin":"/leagues?search=FIFA","hasTargetSeason":true,"score":70},
+    {"id":"1168","season":"2026","name":"FIFA Intercontinental Cup","country":"World","type":"Cup","origin":"/leagues?search=FIFA","hasTargetSeason":false,"score":30}
   ],
   "fixtureAttempts": [
-    {
-      "league": "1",
-      "season": "2026",
-      "name": "World Cup",
-      "path": "/fixtures?league=1&season=2026",
-      "count": 0
-    },
-    {
-      "league": "1",
-      "season": "2026",
-      "name": "World Cup",
-      "path": "/fixtures?league=1&season=2026&from=2026-06-11&to=2026-07-19",
-      "count": 0
-    },
-    {
-      "league": "1213",
-      "season": "2026",
-      "name": "Kings World Cup Nations",
-      "path": "/fixtures?league=1213&season=2026",
-      "count": 0
-    },
-    {
-      "league": "1213",
-      "season": "2026",
-      "name": "Kings World Cup Nations",
-      "path": "/fixtures?league=1213&season=2026&from=2026-06-11&to=2026-07-19",
-      "count": 0
-    },
-    {
-      "league": "1222",
-      "season": "2026",
-      "name": "FIFA Series",
-      "path": "/fixtures?league=1222&season=2026",
-      "count": 0
-    },
-    {
-      "league": "1222",
-      "season": "2026",
-      "name": "FIFA Series",
-      "path": "/fixtures?league=1222&season=2026&from=2026-06-11&to=2026-07-19",
-      "count": 0
-    },
-    {
-      "league": "1168",
-      "season": "2026",
-      "name": "FIFA Intercontinental Cup",
-      "path": "/fixtures?league=1168&season=2026",
-      "count": 0
-    },
-    {
-      "league": "1168",
-      "season": "2026",
-      "name": "FIFA Intercontinental Cup",
-      "path": "/fixtures?league=1168&season=2026&from=2026-06-11&to=2026-07-19",
-      "count": 0
-    }
+    {"league":"1","season":"2026","name":"World Cup","path":"/fixtures?league=1&season=2026","count":0},
+    {"league":"1","season":"2026","name":"World Cup","path":"/fixtures?league=1&season=2026&from=2026-06-11&to=2026-07-19","count":0},
+    {"league":"1213","season":"2026","name":"Kings World Cup Nations","path":"/fixtures?league=1213&season=2026","count":0},
+    {"league":"1213","season":"2026","name":"Kings World Cup Nations","path":"/fixtures?league=1213&season=2026&from=2026-06-11&to=2026-07-19","count":0},
+    {"league":"1222","season":"2026","name":"FIFA Series","path":"/fixtures?league=1222&season=2026","count":0},
+    {"league":"1222","season":"2026","name":"FIFA Series","path":"/fixtures?league=1222&season=2026&from=2026-06-11&to=2026-07-19","count":0},
+    {"league":"1168","season":"2026","name":"FIFA Intercontinental Cup","path":"/fixtures?league=1168&season=2026","count":0},
+    {"league":"1168","season":"2026","name":"FIFA Intercontinental Cup","path":"/fixtures?league=1168&season=2026&from=2026-06-11&to=2026-07-19","count":0}
   ],
   "selected": null,
   "updatedData": true,
   "fallbackWeb": {
     "used": true,
-    "reason": "API-Football retornou zero jogos para todos os candidatos.",
-    "lastConfirmedUpdate": "Austrália 0-1 Egito, jogo em andamento, gol de Emam Ashour aos 13 minutos confirmado por The Guardian/The Times.",
+    "reason": "API-Football retornou zero jogos para todos os candidatos; dados mantidos por fallback web validado.",
+    "lastConfirmedUpdate": "Austrália 1-1 Egito, Egito 4-2 nos pênaltis; Argentina 3-2 Cabo Verde após prorrogação; Colômbia 1-0 Gana no intervalo.",
     "sources": [
-      "https://www.theguardian.com/football/live/2026/jul/03/australia-v-egypt-world-cup-2026-last-32-live",
+      "https://www.reuters.com/sports/soccer/egypt-beat-australia-penalties-reach-world-cup-round-16-2026-07-03/",
+      "https://www.theguardian.com/football/2026/jul/03/australia-egypt-world-cup-2026-last-32-match-report",
+      "https://apnews.com/article/64fe1029d7f5ca97976cd5ac09075c28",
+      "https://www.theguardian.com/football/live/2026/jul/03/argentina-v-cape-verde-world-cup-2026-last-32-live",
+      "https://www.theguardian.com/football/live/2026/jul/04/colombia-v-ghana-world-cup-2026-last-32-live",
       "https://www.thetimes.com/sport/football/world-cup/article/world-cup-2026-latest-news-live-score-team-updates-argentina-egypt-ghana-ngnph69nn"
     ]
   },
