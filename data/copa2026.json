@@ -1,39 +1,43 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-04T18:47:09.000Z",
+    "lastUpdated": "2026-07-05T13:50:00.000Z",
     "source": "Base inicial + API-Football preparada + fallback web validado",
     "timezone": "America/Sao_Paulo",
-    "note": "API-Football retornou zero jogos; arquivo mantido e atualizado por fallback web somente com informações confirmadas em fontes confiáveis. Ajuste: Canadá x Marrocos atualizado como jogo em andamento, com gol confirmado de Azzedine Ounahi aos 50'. Resultado final ainda não confirmado nesta checagem."
+    "note": "Revisão completa das datas e horários em Brasília. Corrigidos IDs, mandos, utcDate, resultados das oitavas já encerradas e chaveamento. Horários convertidos de Brasília para UTC para evitar mudança incorreta de dia no app."
   },
   "matches": [
-    {"id":"53452545","utcDate":"2026-06-28T19:00:00.000Z","stage":"round32","home":"África do Sul","away":"Canadá","homeScore":0,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Canadá avançou","goals":[{"team":"Canadá","player":"Stephen Eustáquio","minute":"90+2"}]},
-    {"id":"53452557","utcDate":"2026-06-29T17:00:00.000Z","stage":"round32","home":"Brasil","away":"Japão","homeScore":2,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Brasil avançou","goals":[{"team":"Japão","player":"Kaishu Sano","minute":"29"},{"team":"Brasil","player":"Casemiro","minute":"56"},{"team":"Brasil","player":"Gabriel Martinelli","minute":"90+5"}]},
-    {"id":"53452541","utcDate":"2026-06-29T20:30:00.000Z","stage":"round32","home":"Alemanha","away":"Paraguai","homeScore":1,"awayScore":1,"status":"finished","statusShort":"PEN","venue":"","projection":"Paraguai avançou nos pênaltis","goals":[{"team":"Paraguai","player":"Julio Enciso","minute":"42"},{"team":"Alemanha","player":"Kai Havertz","minute":"54"}]},
-    {"id":"53452547","utcDate":"2026-06-30T01:00:00.000Z","stage":"round32","home":"Holanda","away":"Marrocos","homeScore":1,"awayScore":1,"status":"finished","statusShort":"PEN","venue":"","projection":"Marrocos avançou nos pênaltis","goals":[{"team":"Holanda","player":"Cody Gakpo","minute":"72"},{"team":"Marrocos","player":"Issa Diop","minute":"90+1"}]},
-    {"id":"53452561","utcDate":"2026-06-30T17:00:00.000Z","stage":"round32","home":"Costa do Marfim","away":"Noruega","homeScore":1,"awayScore":2,"status":"finished","statusShort":"FT","venue":"","projection":"Noruega avançou","goals":[{"team":"Noruega","player":"Antonio Nusa","minute":"36"},{"team":"Costa do Marfim","player":"Amad Diallo","minute":"74"},{"team":"Noruega","player":"Erling Haaland","minute":"86"}]},
-    {"id":"53452543","utcDate":"2026-06-30T21:00:00.000Z","stage":"round32","home":"França","away":"Suécia","homeScore":3,"awayScore":0,"status":"finished","statusShort":"FT","venue":"","projection":"França avançou","goals":[{"team":"França","player":"Kylian Mbappé","minute":"45"},{"team":"França","player":"Bradley Barcola","minute":"53"},{"team":"França","player":"Kylian Mbappé","minute":"74"}]},
-    {"id":"53452563","utcDate":"2026-07-01T02:00:00.000Z","stage":"round32","home":"México","away":"Equador","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"","projection":"México avançou","goals":[{"team":"México","player":"Julián Quiñones","minute":"22"},{"team":"México","player":"Raúl Jiménez","minute":"35"}]},
-    {"id":"53452565","utcDate":"2026-07-01T16:00:00.000Z","stage":"round32","home":"Inglaterra","away":"RD Congo","homeScore":2,"awayScore":1,"status":"finished","statusShort":"FT","venue":"Atlanta Stadium","projection":"Inglaterra avançou","goals":[{"team":"RD Congo","player":"Brian Cipenga","minute":"7"},{"team":"Inglaterra","player":"Harry Kane","minute":"75"},{"team":"Inglaterra","player":"Harry Kane","minute":"86"}]},
-    {"id":"53452555","utcDate":"2026-07-01T20:00:00.000Z","stage":"round32","home":"Bélgica","away":"Senegal","homeScore":3,"awayScore":2,"status":"finished","statusShort":"AET","venue":"Seattle","projection":"Bélgica avançou após prorrogação","goals":[{"team":"Senegal","player":"Habib Diarra","minute":"24"},{"team":"Senegal","player":"Ismaïla Sarr","minute":"51"},{"team":"Bélgica","player":"Romelu Lukaku","minute":"86"},{"team":"Bélgica","player":"Youri Tielemans","minute":"89"},{"team":"Bélgica","player":"Youri Tielemans","minute":"122","detail":"pênalti"}]},
-    {"id":"53452553","utcDate":"2026-07-02T00:00:00.000Z","stage":"round32","home":"Estados Unidos","away":"Bósnia e Herzegovina","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Santa Clara","projection":"Estados Unidos avançou","goals":[{"team":"Estados Unidos","player":"Folarin Balogun","minute":"45"},{"team":"Estados Unidos","player":"Malik Tillman","minute":"82"}]},
-    {"id":"53452551","utcDate":"2026-07-02T19:00:00.000Z","stage":"round32","home":"Espanha","away":"Áustria","homeScore":3,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Inglewood","projection":"Espanha avançou","goals":[{"team":"Espanha","player":"Mikel Oyarzabal","minute":"36"},{"team":"Espanha","player":"Pedro Porro","minute":"66"},{"team":"Espanha","player":"Mikel Oyarzabal","minute":"89"}]},
-    {"id":"53452549","utcDate":"2026-07-02T23:00:00.000Z","stage":"round32","home":"Portugal","away":"Croácia","homeScore":2,"awayScore":1,"status":"finished","statusShort":"FT","venue":"Toronto","projection":"Portugal avançou","goals":[{"team":"Croácia","player":"Ivan Perišić","minute":"60"},{"team":"Portugal","player":"Cristiano Ronaldo","minute":"69","detail":"pênalti"},{"team":"Portugal","player":"Gonçalo Ramos","minute":"90+4"}]},
-    {"id":"53452505","utcDate":"2026-07-03T03:00:00.000Z","stage":"round32","home":"Suíça","away":"Argélia","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"BC Place, Vancouver","projection":"Suíça avançou","goals":[{"team":"Suíça","player":"Breel Embolo","minute":"10"},{"team":"Suíça","player":"Dan Ndoye","minute":"46"}]},
+    {"id":"53452545","utcDate":"2026-06-28T19:00:00.000Z","stage":"round32","home":"África do Sul","away":"Canadá","homeScore":0,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Canadá avançou","winner":"Canadá","goals":[{"team":"Canadá","player":"Stephen Eustáquio","minute":"90+2"}]},
+    {"id":"53452557","utcDate":"2026-06-29T17:00:00.000Z","stage":"round32","home":"Brasil","away":"Japão","homeScore":2,"awayScore":1,"status":"finished","statusShort":"FT","venue":"","projection":"Brasil avançou","winner":"Brasil","goals":[{"team":"Japão","player":"Kaishu Sano","minute":"29"},{"team":"Brasil","player":"Casemiro","minute":"56"},{"team":"Brasil","player":"Gabriel Martinelli","minute":"90+5"}]},
+    {"id":"53452541","utcDate":"2026-06-29T20:30:00.000Z","stage":"round32","home":"Alemanha","away":"Paraguai","homeScore":1,"awayScore":1,"penaltyHomeScore":3,"penaltyAwayScore":4,"status":"finished","statusShort":"PEN","venue":"","projection":"Paraguai avançou nos pênaltis","winner":"Paraguai","goals":[{"team":"Paraguai","player":"Julio Enciso","minute":"42"},{"team":"Alemanha","player":"Kai Havertz","minute":"54"}]},
+    {"id":"53452547","utcDate":"2026-06-30T01:00:00.000Z","stage":"round32","home":"Holanda","away":"Marrocos","homeScore":1,"awayScore":1,"penaltyHomeScore":2,"penaltyAwayScore":3,"status":"finished","statusShort":"PEN","venue":"","projection":"Marrocos avançou nos pênaltis","winner":"Marrocos","goals":[{"team":"Holanda","player":"Cody Gakpo","minute":"72"},{"team":"Marrocos","player":"Issa Diop","minute":"90+1"}]},
+    {"id":"53452561","utcDate":"2026-06-30T17:00:00.000Z","stage":"round32","home":"Costa do Marfim","away":"Noruega","homeScore":1,"awayScore":2,"status":"finished","statusShort":"FT","venue":"","projection":"Noruega avançou","winner":"Noruega","goals":[{"team":"Noruega","player":"Antonio Nusa","minute":"36"},{"team":"Costa do Marfim","player":"Amad Diallo","minute":"74"},{"team":"Noruega","player":"Erling Haaland","minute":"86"}]},
+    {"id":"53452543","utcDate":"2026-06-30T21:00:00.000Z","stage":"round32","home":"França","away":"Suécia","homeScore":3,"awayScore":0,"status":"finished","statusShort":"FT","venue":"","projection":"França avançou","winner":"França","goals":[{"team":"França","player":"Kylian Mbappé","minute":"45"},{"team":"França","player":"Bradley Barcola","minute":"53"},{"team":"França","player":"Kylian Mbappé","minute":"74"}]},
+    {"id":"53452563","utcDate":"2026-07-01T02:00:00.000Z","stage":"round32","home":"México","away":"Equador","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"","projection":"México avançou","winner":"México","goals":[{"team":"México","player":"Julián Quiñones","minute":"22"},{"team":"México","player":"Raúl Jiménez","minute":"35"}]},
+    {"id":"53452565","utcDate":"2026-07-01T16:00:00.000Z","stage":"round32","home":"Inglaterra","away":"RD Congo","homeScore":2,"awayScore":1,"status":"finished","statusShort":"FT","venue":"Atlanta Stadium","projection":"Inglaterra avançou","winner":"Inglaterra","goals":[{"team":"RD Congo","player":"Brian Cipenga","minute":"7"},{"team":"Inglaterra","player":"Harry Kane","minute":"75"},{"team":"Inglaterra","player":"Harry Kane","minute":"86"}]},
+    {"id":"53452555","utcDate":"2026-07-01T20:00:00.000Z","stage":"round32","home":"Bélgica","away":"Senegal","homeScore":3,"awayScore":2,"status":"finished","statusShort":"AET","venue":"Seattle","projection":"Bélgica avançou após prorrogação","winner":"Bélgica","goals":[{"team":"Senegal","player":"Habib Diarra","minute":"24"},{"team":"Senegal","player":"Ismaïla Sarr","minute":"51"},{"team":"Bélgica","player":"Romelu Lukaku","minute":"86"},{"team":"Bélgica","player":"Youri Tielemans","minute":"89"},{"team":"Bélgica","player":"Youri Tielemans","minute":"122","detail":"pênalti"}]},
+    {"id":"53452553","utcDate":"2026-07-02T00:00:00.000Z","stage":"round32","home":"Estados Unidos","away":"Bósnia e Herzegovina","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Santa Clara","projection":"Estados Unidos avançou","winner":"Estados Unidos","goals":[{"team":"Estados Unidos","player":"Folarin Balogun","minute":"45"},{"team":"Estados Unidos","player":"Malik Tillman","minute":"82"}]},
+    {"id":"53452551","utcDate":"2026-07-02T19:00:00.000Z","stage":"round32","home":"Espanha","away":"Áustria","homeScore":3,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Inglewood","projection":"Espanha avançou","winner":"Espanha","goals":[{"team":"Espanha","player":"Mikel Oyarzabal","minute":"36"},{"team":"Espanha","player":"Pedro Porro","minute":"66"},{"team":"Espanha","player":"Mikel Oyarzabal","minute":"89"}]},
+    {"id":"53452549","utcDate":"2026-07-02T23:00:00.000Z","stage":"round32","home":"Portugal","away":"Croácia","homeScore":2,"awayScore":1,"status":"finished","statusShort":"FT","venue":"Toronto","projection":"Portugal avançou","winner":"Portugal","goals":[{"team":"Croácia","player":"Ivan Perišić","minute":"60"},{"team":"Portugal","player":"Cristiano Ronaldo","minute":"69","detail":"pênalti"},{"team":"Portugal","player":"Gonçalo Ramos","minute":"90+4"}]},
+    {"id":"53452505","utcDate":"2026-07-03T03:00:00.000Z","stage":"round32","home":"Suíça","away":"Argélia","homeScore":2,"awayScore":0,"status":"finished","statusShort":"FT","venue":"BC Place, Vancouver","projection":"Suíça avançou","winner":"Suíça","goals":[{"team":"Suíça","player":"Breel Embolo","minute":"10"},{"team":"Suíça","player":"Dan Ndoye","minute":"46"}]},
     {"id":"53452503","utcDate":"2026-07-03T18:00:00.000Z","stage":"round32","home":"Austrália","away":"Egito","homeScore":1,"awayScore":1,"penaltyHomeScore":2,"penaltyAwayScore":4,"status":"finished","statusShort":"PEN","venue":"AT&T Stadium, Dallas","projection":"Egito avançou nos pênaltis","winner":"Egito","goals":[{"team":"Egito","player":"Emam Ashour","minute":"13"},{"team":"Austrália","player":"Mohamed Hany","minute":"55","detail":"gol contra"}]},
     {"id":"53452569","utcDate":"2026-07-03T22:00:00.000Z","stage":"round32","home":"Argentina","away":"Cabo Verde","homeScore":3,"awayScore":2,"status":"finished","statusShort":"AET","venue":"Hard Rock Stadium, Miami Gardens","projection":"Argentina avançou após prorrogação","winner":"Argentina","goals":[{"team":"Argentina","player":"Lionel Messi","minute":"29"},{"team":"Cabo Verde","player":"Deroy Duarte","minute":"59"},{"team":"Argentina","player":"Lisandro Martínez","minute":"93"},{"team":"Cabo Verde","player":"Sidny Lopes Cabral","minute":"105"},{"team":"Argentina","player":"Cristian Romero","minute":"111"}]},
     {"id":"53452507","utcDate":"2026-07-04T01:30:00.000Z","stage":"round32","home":"Colômbia","away":"Gana","homeScore":1,"awayScore":0,"status":"finished","statusShort":"FT","venue":"Arrowhead Stadium, Kansas City","projection":"Colômbia avançou","winner":"Colômbia","goals":[{"team":"Colômbia","player":"Jhon Arias","minute":"14"}]},
-    {"id":"53452511","utcDate":"2026-07-04T17:00:00.000Z","stage":"oitavas","home":"Canadá","away":"Marrocos","homeScore":0,"awayScore":1,"status":"live","statusShort":"2H","venue":"Houston","favorite":"Marrocos","goals":[{"team":"Marrocos","player":"Azzedine Ounahi","minute":"50"}]},
-    {"id":"53452509","utcDate":"2026-07-04T21:00:00.000Z","stage":"oitavas","home":"Paraguai","away":"França","status":"scheduled","statusShort":"NS","venue":"Philadelphia","favorite":"França"},
+    {"id":"53452511","utcDate":"2026-07-04T17:00:00.000Z","stage":"oitavas","home":"Canadá","away":"Marrocos","homeScore":0,"awayScore":3,"status":"finished","statusShort":"FT","venue":"Houston","projection":"Marrocos avançou","winner":"Marrocos","goals":[{"team":"Marrocos","player":"Azzedine Ounahi","minute":"50"},{"team":"Marrocos","player":"Azzedine Ounahi","minute":"82"},{"team":"Marrocos","player":"Soufiane Rahimi","minute":"90+8"}]},
+    {"id":"53452509","utcDate":"2026-07-04T21:00:00.000Z","stage":"oitavas","home":"Paraguai","away":"França","homeScore":0,"awayScore":1,"status":"finished","statusShort":"FT","venue":"Philadelphia","projection":"França avançou","winner":"França","goals":[{"team":"França","player":"Kylian Mbappé","minute":"70","detail":"pênalti"}]},
     {"id":"53452517","utcDate":"2026-07-05T20:00:00.000Z","stage":"oitavas","home":"Brasil","away":"Noruega","status":"scheduled","statusShort":"NS","venue":"","favorite":"Brasil"},
     {"id":"53452519","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"México","away":"Inglaterra","status":"scheduled","statusShort":"NS","venue":"","favorite":"Inglaterra"},
-    {"id":"53452521","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Bélgica","away":"Estados Unidos","status":"scheduled","statusShort":"NS","venue":"Seattle","favorite":"Bélgica"},
-    {"id":"53452523","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Espanha","away":"Portugal","status":"scheduled","statusShort":"NS","venue":"Dallas","favorite":"Espanha"},
-    {"id":"53452527","utcDate":"2026-07-06T00:00:00.000Z","stage":"oitavas","home":"Argentina","away":"Egito","status":"scheduled","statusShort":"NS","venue":"Atlanta","favorite":"Argentina"},
-    {"id":"53452525","utcDate":"2026-07-07T20:00:00.000Z","stage":"oitavas","home":"Suíça","away":"Colômbia","status":"scheduled","statusShort":"NS","venue":"BC Place, Vancouver","favorite":"Suíça"}
+    {"id":"53452513","utcDate":"2026-07-06T19:00:00.000Z","stage":"oitavas","home":"Portugal","away":"Espanha","status":"scheduled","statusShort":"NS","venue":"Dallas","favorite":"Espanha"},
+    {"id":"53452515","utcDate":"2026-07-07T00:00:00.000Z","stage":"oitavas","home":"Estados Unidos","away":"Bélgica","status":"scheduled","statusShort":"NS","venue":"Seattle","favorite":"Bélgica"},
+    {"id":"53452521","utcDate":"2026-07-07T16:00:00.000Z","stage":"oitavas","home":"Argentina","away":"Egito","status":"scheduled","statusShort":"NS","venue":"Atlanta","favorite":"Argentina"},
+    {"id":"53452523","utcDate":"2026-07-07T20:00:00.000Z","stage":"oitavas","home":"Suíça","away":"Colômbia","status":"scheduled","statusShort":"NS","venue":"BC Place, Vancouver","favorite":"Suíça"},
+    {"id":"53452525","utcDate":"2026-07-09T20:00:00.000Z","stage":"quartas","home":"França","away":"Marrocos","status":"scheduled","statusShort":"NS","venue":"","favorite":"França"},
+    {"id":"53452527","utcDate":"2026-07-10T19:00:00.000Z","stage":"quartas","home":"Vencedor de Portugal x Espanha","away":"Vencedor de Estados Unidos x Bélgica","status":"scheduled","statusShort":"NS","venue":"","favorite":"A definir"},
+    {"id":"53452529","utcDate":"2026-07-11T21:00:00.000Z","stage":"quartas","home":"Vencedor de Brasil x Noruega","away":"Vencedor de México x Inglaterra","status":"scheduled","statusShort":"NS","venue":"","favorite":"A definir"},
+    {"id":"53452531","utcDate":"2026-07-12T01:00:00.000Z","stage":"quartas","home":"Vencedor de Argentina x Egito","away":"Vencedor de Suíça x Colômbia","status":"scheduled","statusShort":"NS","venue":"","favorite":"A definir"}
   ],
   "scorers": [
     {"name":"Lionel Messi","team":"Argentina","goals":7},
-    {"name":"Kylian Mbappé","team":"França","goals":6},
+    {"name":"Kylian Mbappé","team":"França","goals":7},
     {"name":"Harry Kane","team":"Inglaterra","goals":5},
     {"name":"Erling Haaland","team":"Noruega","goals":4},
     {"name":"Vinícius Júnior","team":"Brasil","goals":3},
@@ -51,24 +55,30 @@
     {"phase":"Oitavas","value":"Noruega"},
     {"phase":"Quartas prováveis","value":"México ou Inglaterra"},
     {"phase":"Semifinal provável","value":"Argentina, Egito, Colômbia ou Suíça"},
-    {"phase":"Final provável","value":"Espanha, Portugal ou França"}
+    {"phase":"Final provável","value":"Espanha, Portugal, Bélgica, Estados Unidos, França ou Marrocos"}
   ],
   "bracket": [
     {"phase":"Oitavas confirmadas","items":[
-      {"match":"Canadá x Marrocos","status":"Ao vivo · Marrocos 1-0"},
-      {"match":"Paraguai x França","status":"04/07 · 18h BRT"},
+      {"match":"Canadá x Marrocos","status":"Marrocos 3-0 · Marrocos avançou"},
+      {"match":"Paraguai x França","status":"França 1-0 · França avançou"},
       {"match":"Brasil x Noruega","status":"05/07 · 17h BRT"},
       {"match":"México x Inglaterra","status":"05/07 · 21h BRT"},
-      {"match":"Bélgica x Estados Unidos","status":"06/07 · horário a confirmar"},
-      {"match":"Espanha x Portugal","status":"06/07 · horário a confirmar"},
-      {"match":"Argentina x Egito","status":"06/07 · horário a confirmar"},
+      {"match":"Portugal x Espanha","status":"06/07 · 16h BRT"},
+      {"match":"Estados Unidos x Bélgica","status":"06/07 · 21h BRT"},
+      {"match":"Argentina x Egito","status":"07/07 · 13h BRT"},
       {"match":"Suíça x Colômbia","status":"07/07 · 17h BRT"}
+    ]},
+    {"phase":"Quartas confirmadas / previstas","items":[
+      {"match":"França x Marrocos","status":"09/07 · 17h BRT"},
+      {"match":"Venc. Portugal/Espanha x Venc. EUA/Bélgica","status":"10/07 · 16h BRT"},
+      {"match":"Venc. Brasil/Noruega x Venc. México/Inglaterra","status":"11/07 · 18h BRT"},
+      {"match":"Venc. Argentina/Egito x Venc. Suíça/Colômbia","status":"11/07 · 22h BRT"}
     ]},
     {"phase":"Projeção atual","items":[
       {"match":"França x Marrocos","pick":"França"},
       {"match":"Brasil x Inglaterra","pick":"Brasil"},
       {"match":"Espanha x Bélgica/Estados Unidos","pick":"Espanha"},
-      {"match":"Argentina x Egito ou Colômbia x Suíça","pick":"Argentina"}
+      {"match":"Argentina x Colômbia/Suíça","pick":"Argentina"}
     ]}
   ]
 }
