@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-07-05T15:02:12.507Z",
+  "checkedAt": "2026-07-06T02:17:52.000Z",
   "targetSeason": "2026",
   "defaultLeague": "1",
   "leagueQueries": [
@@ -117,6 +117,6 @@
     }
   ],
   "selected": null,
-  "updatedData": false,
-  "message": "API retornou zero jogos para todos os candidatos de World Cup 2026. Mantendo arquivo atual com 28 jogos."
+  "updatedData": true,
+  "message": "API-Football segue retornando zero jogos para todos os candidatos de World Cup 2026. Arquivo data/copa2026.json atualizado por fallback web validado: Brasil 1-2 Noruega confirmado; México x Inglaterra registrado ao vivo no intervalo após atraso climático."
 }
