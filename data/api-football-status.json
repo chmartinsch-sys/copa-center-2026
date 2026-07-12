@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-07-11T18:46:47.000Z",
+  "checkedAt": "2026-07-12T02:15:00.000Z",
   "targetSeason": "2026",
   "defaultLeague": "1",
   "leagueQueries": [
@@ -121,7 +121,7 @@
   "fallback": {
     "used": true,
     "reason": "API-Football retornou zero jogos para todos os candidatos da Copa do Mundo 2026.",
-    "validatedAt": "2026-07-11T18:46:47.000Z",
+    "validatedAt": "2026-07-12T02:15:00.000Z",
     "validatedMatches": [
       {
         "id": "53452525",
@@ -142,14 +142,16 @@
         "match": "Noruega x Inglaterra",
         "brasilia": "2026-07-11 18:00",
         "weekday": "sábado",
-        "utcDate": "2026-07-11T21:00:00.000Z"
+        "utcDate": "2026-07-11T21:00:00.000Z",
+        "result": "Noruega 1 x 2 Inglaterra após prorrogação"
       },
       {
         "id": "53452531",
         "match": "Argentina x Suíça",
         "brasilia": "2026-07-11 22:00",
         "weekday": "sábado",
-        "utcDate": "2026-07-12T01:00:00.000Z"
+        "utcDate": "2026-07-12T01:00:00.000Z",
+        "status": "em andamento na última checagem"
       },
       {
         "id": "53452533",
@@ -157,8 +159,15 @@
         "brasilia": "2026-07-14 16:00",
         "weekday": "terça-feira",
         "utcDate": "2026-07-14T19:00:00.000Z"
+      },
+      {
+        "id": "53452535",
+        "match": "Inglaterra x vencedor de Argentina x Suíça",
+        "brasilia": "2026-07-15 16:00",
+        "weekday": "quarta-feira",
+        "utcDate": "2026-07-15T19:00:00.000Z"
       }
     ]
   },
-  "message": "API retornou zero jogos. Fallback manual validado em fontes esportivas reconhecidas; placares, gols, IDs e horários em Brasília/UTC foram conferidos sem apagar a base existente."
+  "message": "API-Football continuou retornando zero jogos. O fallback manual foi atualizado com Noruega 1 x 2 Inglaterra após prorrogação, gols de Andreas Schjelderup aos 36 e Jude Bellingham aos 45+2 e 93, além da semifinal da Inglaterra em 15/07 às 16h de Brasília. Argentina x Suíça permaneceu sem resultado final porque ainda estava em andamento."
 }
