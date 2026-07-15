@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Copa Center 2026</title>
-  <meta name="description" content="Dashboard rápido para acompanhar jogos, resultados, Brasil, chaveamento e artilharia da Copa do Mundo 2026." />
+  <meta name="description" content="Painel rápido para acompanhar jogos, resultados, chaveamento e artilharia da Copa do Mundo 2026." />
   <meta name="theme-color" content="#081B16" />
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
@@ -12,32 +12,34 @@
 </head>
 <body>
   <header class="app-header">
-    <div class="brand-row">
-      <div class="brand-mark" aria-hidden="true">⚽</div>
-      <div>
-        <p class="eyebrow">Copa Center</p>
-        <h1>Copa 2026</h1>
+    <div class="header-shell">
+      <div class="brand-row">
+        <div class="brand-mark" aria-hidden="true">CC</div>
+        <div>
+          <p class="eyebrow">Copa Center</p>
+          <h1>Copa 2026</h1>
+        </div>
       </div>
+      <div class="update-pill" id="updatePill">Carregando dados...</div>
     </div>
-    <div class="update-pill" id="updatePill">Carregando...</div>
   </header>
 
   <nav class="quick-nav" aria-label="Navegação principal">
     <a href="#inicio">Início</a>
     <a href="#jogos">Jogos</a>
-    <a href="#brasil">Brasil</a>
     <a href="#chaveamento">Chave</a>
-    <a href="#estatisticas">Stats</a>
+    <a href="#artilharia">Artilharia</a>
+    <a href="#brasil">Brasil</a>
   </nav>
 
   <main class="main-shell">
     <section id="inicio" class="section-block section-first">
       <div class="section-head">
         <div>
-          <p class="section-kicker">Resumo em 30 segundos</p>
-          <h2>O que preciso saber agora</h2>
+          <p class="section-kicker">Resumo da fase atual</p>
+          <h2>O que importa agora</h2>
         </div>
-        <button class="ghost-btn" id="refreshBtn" type="button">Atualizar</button>
+        <button class="ghost-btn" id="refreshBtn" type="button">Recarregar</button>
       </div>
       <div id="quickSummary" class="summary-grid">
         <div class="skeleton-card"></div>
@@ -48,24 +50,41 @@
     <section id="jogos" class="section-block">
       <div class="section-head compact">
         <div>
-          <p class="section-kicker">Consulta rápida</p>
+          <p class="section-kicker">Agenda e resultados</p>
           <h2>Jogos</h2>
         </div>
       </div>
-
       <div class="search-wrap">
-        <input id="teamSearch" type="search" placeholder="Buscar seleção: Brasil, Argentina, França..." autocomplete="off" />
+        <input id="teamSearch" type="search" placeholder="Buscar seleção" autocomplete="off" />
       </div>
-
       <div class="filter-row" role="tablist" aria-label="Filtros de jogos">
-        <button class="filter-chip active" data-filter="hoje" type="button">Hoje</button>
-        <button class="filter-chip" data-filter="proximos" type="button">Próximos</button>
+        <button class="filter-chip active" data-filter="proximos" type="button">Próximos</button>
+        <button class="filter-chip" data-filter="hoje" type="button">Hoje</button>
         <button class="filter-chip" data-filter="resultados" type="button">Resultados</button>
         <button class="filter-chip" data-filter="brasil" type="button">Brasil</button>
         <button class="filter-chip" data-filter="todos" type="button">Todos</button>
       </div>
-
       <div id="matchesList" class="match-list"></div>
+    </section>
+
+    <section id="chaveamento" class="section-block">
+      <div class="section-head compact">
+        <div>
+          <p class="section-kicker">Caminho até o título</p>
+          <h2>Chaveamento</h2>
+        </div>
+      </div>
+      <div id="bracketPanel" class="bracket-stack"></div>
+    </section>
+
+    <section id="artilharia" class="section-block">
+      <div class="section-head compact">
+        <div>
+          <p class="section-kicker">Ranking do torneio</p>
+          <h2>Artilharia</h2>
+        </div>
+      </div>
+      <div id="scorersPanel" class="scorers-panel"></div>
     </section>
 
     <section id="brasil" class="section-block">
@@ -78,33 +97,12 @@
       <div id="brazilPanel" class="brazil-grid"></div>
     </section>
 
-    <section id="chaveamento" class="section-block">
-      <div class="section-head compact">
-        <div>
-          <p class="section-kicker">Oficial + projeção</p>
-          <h2>Chaveamento</h2>
-        </div>
-      </div>
-      <div id="bracketPanel" class="bracket-stack"></div>
-    </section>
-
-    <section id="estatisticas" class="section-block">
-      <div class="section-head compact">
-        <div>
-          <p class="section-kicker">Números principais</p>
-          <h2>Estatísticas</h2>
-        </div>
-      </div>
-      <div id="statsPanel" class="stats-grid"></div>
-    </section>
-
     <section id="status" class="section-block subtle-block">
       <div id="dataStatus" class="note-box">Carregando status dos dados...</div>
     </section>
   </main>
 
   <div class="bottom-space" aria-hidden="true"></div>
-
   <script src="app.js"></script>
 </body>
 </html>
