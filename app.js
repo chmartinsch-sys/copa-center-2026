@@ -1,38 +1,188 @@
-const TZ="America/Sao_Paulo";
-let DATA=null,API_STATUS=null,filter="hoje",query="";
-const $=s=>document.querySelector(s);
-const $$=s=>[...document.querySelectorAll(s)];
-const norm=s=>(s||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
-const esc=s=>(s??"").toString().replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
-const isBrazil=m=>norm(m.home)==="brasil"||norm(m.away)==="brasil";
-const dt=m=>new Date(m.utcDate||m.date);
-const todayKey=()=>new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
-const dateKey=d=>new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).format(d);
-const fmtDate=d=>new Intl.DateTimeFormat("pt-BR",{timeZone:TZ,weekday:"short",day:"2-digit",month:"short"}).format(d).replace(".","");
-const fmtTime=d=>new Intl.DateTimeFormat("pt-BR",{timeZone:TZ,hour:"2-digit",minute:"2-digit"}).format(d);
-const finished=m=>["FT","AET","PEN","CANC","ABD"].includes(m.statusShort)||m.status==="finished";
-const live=m=>["1H","HT","2H","ET","P","BT","LIVE"].includes(m.statusShort)||m.status==="live";
-const upcoming=m=>!finished(m)&&!live(m);
-const stageLabel=s=>({grupos:"Fase de grupos",round32:"16 avos",oitavas:"Oitavas",quartas:"Quartas",semifinal:"Semifinal",terceiro:"3º lugar",final:"Final"}[s]||s||"Jogo");
-const statusLabel=m=>live(m)?"Ao vivo":finished(m)?"Encerrado":dateKey(dt(m))===todayKey()?"Hoje":"Próximo";
-const score=m=>finished(m)||live(m)?`<span class="score">${m.homeScore??""}</span>`:"";
-function sortMatches(a,b){return dt(a)-dt(b)}
-function goalItems(m){const raw=Array.isArray(m.goals)?m.goals:Array.isArray(m.goalScorers)?m.goalScorers:Array.isArray(m.scoringEvents)?m.scoringEvents:[];return raw.map(g=>typeof g==="string"?{text:g}:g).filter(Boolean)}
-function goalText(g){if(g.text)return esc(g.text);const name=g.player||g.name||g.scorer||g.author||"Gol";const minute=g.minute||g.time||g.elapsed||"";const detail=g.detail||g.type||"";const flags=[];if(minute)flags.push(`${minute}'`);else flags.push("min. a confirmar");if(g.penalty||norm(detail).includes("pen"))flags.push("pên.");else if(g.ownGoal||norm(detail).includes("contra"))flags.push("contra");else if(detail)flags.push(detail);return `${esc(name)} (${esc(flags.join(", "))})`}
-function goalsHtml(m){const goals=goalItems(m);if(!goals.length)return "";const byTeam=team=>goals.filter(g=>norm(g.team||g.selection||g.country)===norm(team)).map(goalText);const home=byTeam(m.home),away=byTeam(m.away);let lines=[];if(home.length)lines.push(`<div class="goal-line"><strong>${esc(m.home)}:</strong> ${home.join(", ")}</div>`);if(away.length)lines.push(`<div class="goal-line"><strong>${esc(m.away)}:</strong> ${away.join(", ")}</div>`);if(!lines.length)lines=[`<div class="goal-line">${goals.map(goalText).join(", ")}</div>`];return `<div class="goal-summary"><span>Gols</span>${lines.join("")}</div>`}
-function matchCard(m){const d=dt(m);const cls=`match-card ${isBrazil(m)?"brazil":""}`;const tags=[];if(finished(m))tags.push(`<span class="tag official">Resultado oficial</span>`);if(m.projection)tags.push(`<span class="tag projection">Projeção: ${esc(m.projection)}</span>`);if(m.favorite)tags.push(`<span class="tag">Favorito: ${esc(m.favorite)}</span>`);return `<article class="${cls}"><div class="match-top"><div class="match-date">${fmtDate(d)} · ${fmtTime(d)} · Brasília</div><div class="status ${live(m)?"live":finished(m)?"done":""}">${statusLabel(m)}</div></div><div class="team"><span>⚽</span><span>${esc(m.home)}</span>${score(m)}</div><div class="team"><span>⚽</span><span>${esc(m.away)}</span>${finished(m)||live(m)?`<span class="score">${m.awayScore??""}</span>`:""}</div>${goalsHtml(m)}<div class="stage">${stageLabel(m.stage)}${m.venue?` · ${esc(m.venue)}`:""}</div>${tags.length?`<div class="tags">${tags.join("")}</div>`:""}</article>`}
-function filteredMatches(){let list=[...(DATA.matches||[])].sort(sortMatches);if(query){const q=norm(query);list=list.filter(m=>norm(`${m.home} ${m.away}`).includes(q))}if(filter==="hoje")list=list.filter(m=>dateKey(dt(m))===todayKey());else if(filter==="proximos")list=list.filter(upcoming).slice(0,12);else if(filter==="resultados")list=list.filter(finished).reverse().slice(0,12);else if(filter==="brasil")list=list.filter(isBrazil);return list}
-function renderMatches(){const list=filteredMatches();$("#matchesList").innerHTML=list.length?list.map(matchCard).join(""):`<div class="empty">Nenhum jogo encontrado neste filtro.</div>`;$$('.filter-chip').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter))}
-function renderSummary(){const matches=[...(DATA.matches||[])].sort(sortMatches);const liveNow=matches.filter(live);const today=matches.filter(m=>dateKey(dt(m))===todayKey());const next=matches.find(upcoming);const last=[...matches].filter(finished).sort((a,b)=>dt(b)-dt(a))[0];const brNext=matches.find(m=>isBrazil(m)&&upcoming(m));const top=(DATA.scorers||[])[0];const cards=[liveNow.length?["Agora",`${liveNow.length} jogo(s) ao vivo`,"Acompanhe placar e status em tempo real."]:today.length?["Hoje",`${today.length} jogo(s) no dia`,"Horários em Brasília."]:next?["Próximo jogo",`${next.home} x ${next.away}`,`${fmtDate(dt(next))} · ${fmtTime(dt(next))}`]:["Agenda","Sem jogo iminente","Veja próximos confrontos."],brNext?["Brasil",`${brNext.home} x ${brNext.away}`,`${stageLabel(brNext.stage)} · ${fmtDate(dt(brNext))} às ${fmtTime(dt(brNext))}`]:last?["Último resultado",`${last.home} ${last.homeScore} x ${last.awayScore} ${last.away}`,stageLabel(last.stage)]:["Brasil","Sem próximo jogo definido","Aguardando atualização."],top?["Artilharia",`${top.name}`,`${top.team} · ${top.goals} gols`]:["Artilharia","Aguardando dados","Atualiza 3x ao dia."],[(DATA.favorites||[])[0]?.team?"Favorito":"Projeções",(DATA.favorites||[])[0]?.team||"Aguardando",(DATA.favorites||[])[0]?.chance?`${(DATA.favorites||[])[0].chance}% de título`:"Separadas dos resultados oficiais."]];$("#quickSummary").innerHTML=cards.map(c=>`<div class="summary-card"><span>${esc(c[0])}</span><strong>${esc(c[1])}</strong><span>${esc(c[2])}</span></div>`).join("")}
-function renderBrazil(){const br=(DATA.matches||[]).filter(isBrazil).sort(sortMatches);const next=br.find(upcoming);const last=[...br].filter(finished).sort((a,b)=>dt(b)-dt(a))[0];const title=(DATA.favorites||[]).find(f=>norm(f.team)==="brasil");const path=(DATA.brazilPath||[]).map(x=>`<div class="bracket-line"><span>${esc(x.phase)}</span><strong>${esc(x.value)}</strong></div>`).join("");$("#brazilPanel").innerHTML=`<div class="info-card"><span>Próximo jogo</span><strong>${next?`${esc(next.home)} x ${esc(next.away)}`:"A definir"}</strong><span>${next?`${fmtDate(dt(next))} · ${fmtTime(dt(next))} · Brasília`:"Aguardando vencedor do confronto"}</span></div><div class="info-card"><span>Último jogo</span><strong>${last?`${esc(last.home)} ${last.homeScore} x ${last.awayScore} ${esc(last.away)}`:"Sem resultado"}</strong><span>${last?stageLabel(last.stage):""}</span></div><div class="info-card"><span>Chance de título</span><strong>${title?`${title.chance}%`:"A calcular"}</strong><span>Projeção, não resultado oficial.</span></div><div class="info-card"><span>Caminho provável</span>${path||"<strong>Aguardando chave</strong>"}</div>`}
-function renderBracket(){const groups=DATA.bracket||[];$("#bracketPanel").innerHTML=groups.length?groups.map(g=>`<div class="bracket-row"><h3>${esc(g.phase)}</h3>${g.items.map(i=>`<div class="bracket-line"><span>${esc(i.match)}</span><strong>${esc(i.status||i.pick||"A definir")}</strong></div>`).join("")}</div>`).join(""):`<div class="empty">Chaveamento ainda não disponível.</div>`}
-function renderStats(){const scorers=(DATA.scorers||[]).slice(0,10).map((s,i)=>`<div class="scorer-row"><div class="rank">${i+1}</div><div><strong>${esc(s.name)}</strong><div class="muted">${esc(s.team)}</div></div><div class="goals">${s.goals}</div></div>`).join("");const fav=(DATA.favorites||[]).slice(0,6).map((f,i)=>`<div class="bracket-line"><span>${i+1}. ${esc(f.team)}</span><strong>${f.chance}%</strong></div>`).join("");$("#statsPanel").innerHTML=`<div class="stat-card"><h3>Artilheiros</h3>${scorers||"<p class='muted'>Sem dados.</p>"}</div><div class="stat-card"><h3>Favoritos</h3>${fav||"<p class='muted'>Sem projeções.</p>"}</div>`}
-function renderStatus(){const last=DATA.meta?.lastUpdated?new Date(DATA.meta.lastUpdated):null;const checked=API_STATUS?.checkedAt?new Date(API_STATUS.checkedAt):null;const msg=API_STATUS?.message||"Aguardando próxima checagem automática.";$("#updatePill").textContent=last?`Dados ${fmtDate(last)} · ${fmtTime(last)}`:"Dados carregados";$("#dataStatus").innerHTML=`<strong>Dados do app:</strong> ${last?`${fmtDate(last)} às ${fmtTime(last)}`:"carregados"}.<br><strong>Última checagem da API:</strong> ${checked?`${fmtDate(checked)} às ${fmtTime(checked)}`:"ainda não registrada"}.<br><strong>Status da API:</strong> ${esc(msg)}<br>API-Football: 07h17. Agente ChatGPT: 07h47, 15h47 e 23h17. Resultados oficiais, projeções e palpites são exibidos separadamente.`}
-function renderAll(){renderSummary();renderMatches();renderBrazil();renderBracket();renderStats();renderStatus()}
-async function load(){try{const [dataRes,statusRes]=await Promise.all([fetch(`data/copa2026.json?v=${Date.now()}`,{cache:"no-store"}),fetch(`data/api-football-status.json?v=${Date.now()}`,{cache:"no-store"}).catch(()=>null)]);DATA=await dataRes.json();API_STATUS=statusRes&&statusRes.ok?await statusRes.json():null;renderAll()}catch(e){$("#quickSummary").innerHTML=`<div class="empty">Não foi possível carregar os dados.</div>`;$("#dataStatus").textContent="Erro ao carregar data/copa2026.json."}}
-async function disableOldServiceWorker(){if(!('serviceWorker'in navigator))return;try{const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(reg=>reg.unregister()));}catch{}}
-$$('.filter-chip').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;renderMatches()}));
-$('#teamSearch').addEventListener('input',e=>{query=e.target.value;renderMatches()});
-$('#refreshBtn').addEventListener('click',load);
-disableOldServiceWorker();
+const TZ = "America/Sao_Paulo";
+let DATA = null;
+let filter = "proximos";
+let query = "";
+
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => [...document.querySelectorAll(selector)];
+const norm = (value) => (value || "").toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const esc = (value) => (value ?? "").toString().replace(/[&<>"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[char]));
+const isBrazil = (match) => norm(match.home) === "brasil" || norm(match.away) === "brasil";
+const dt = (match) => new Date(match.utcDate || match.date);
+const todayKey = () => new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+const dateKey = (date) => new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
+const fmtDate = (date) => new Intl.DateTimeFormat("pt-BR", { timeZone: TZ, weekday: "short", day: "2-digit", month: "short" }).format(date).replace(".", "");
+const fmtTime = (date) => new Intl.DateTimeFormat("pt-BR", { timeZone: TZ, hour: "2-digit", minute: "2-digit" }).format(date);
+const finished = (match) => ["FT", "AET", "PEN", "CANC", "ABD"].includes(match.statusShort) || match.status === "finished";
+const live = (match) => ["1H", "HT", "2H", "ET", "P", "BT", "LIVE"].includes(match.statusShort) || match.status === "live";
+const upcoming = (match) => !finished(match) && !live(match);
+const stageLabel = (stage) => ({ grupos: "Fase de grupos", round32: "16 avos", oitavas: "Oitavas", quartas: "Quartas", semifinal: "Semifinal", terceiro: "3º lugar", final: "Final" }[stage] || stage || "Jogo");
+const statusLabel = (match) => live(match) ? "Ao vivo" : finished(match) ? "Encerrado" : dateKey(dt(match)) === todayKey() ? "Hoje" : "Agendado";
+
+function goalItems(match) {
+  const raw = Array.isArray(match.goals) ? match.goals : Array.isArray(match.goalScorers) ? match.goalScorers : Array.isArray(match.scoringEvents) ? match.scoringEvents : [];
+  return raw.map((goal) => typeof goal === "string" ? { text: goal } : goal).filter(Boolean);
+}
+
+function goalText(goal) {
+  if (goal.text) return esc(goal.text);
+  const name = goal.player || goal.name || goal.scorer || goal.author || "Gol";
+  const minute = goal.minute || goal.time || goal.elapsed || "";
+  const detail = goal.detail || goal.type || "";
+  const flags = [];
+  if (minute) flags.push(`${minute}'`);
+  if (goal.penalty || norm(detail).includes("pen")) flags.push("pên.");
+  else if (goal.ownGoal || norm(detail).includes("contra")) flags.push("contra");
+  return `${esc(name)}${flags.length ? ` (${esc(flags.join(", "))})` : ""}`;
+}
+
+function goalsHtml(match) {
+  const goals = goalItems(match);
+  if (!goals.length) return "";
+  const byTeam = (team) => goals.filter((goal) => norm(goal.team || goal.selection || goal.country) === norm(team)).map(goalText);
+  const home = byTeam(match.home);
+  const away = byTeam(match.away);
+  const lines = [];
+  if (home.length) lines.push(`<div class="goal-line"><strong>${esc(match.home)}:</strong> ${home.join(", ")}</div>`);
+  if (away.length) lines.push(`<div class="goal-line"><strong>${esc(match.away)}:</strong> ${away.join(", ")}</div>`);
+  if (!lines.length) lines.push(`<div class="goal-line">${goals.map(goalText).join(", ")}</div>`);
+  return `<div class="goal-summary"><span>Gols</span>${lines.join("")}</div>`;
+}
+
+function scoreHtml(match) {
+  if (!finished(match) && !live(match)) return "";
+  const penalties = match.penaltyHomeScore != null && match.penaltyAwayScore != null
+    ? `<span class="penalties">pên. ${match.penaltyHomeScore}–${match.penaltyAwayScore}</span>`
+    : "";
+  return `<div class="scoreline"><strong>${match.homeScore ?? ""} × ${match.awayScore ?? ""}</strong>${penalties}</div>`;
+}
+
+function matchCard(match) {
+  const date = dt(match);
+  const classes = ["match-card", isBrazil(match) ? "brazil" : "", finished(match) ? "finished" : "", live(match) ? "live-match" : ""].filter(Boolean).join(" ");
+  const tags = [];
+  if (finished(match)) tags.push(`<span class="tag official">Resultado oficial</span>`);
+  if (match.projection && !finished(match)) tags.push(`<span class="tag projection">${esc(match.projection)}</span>`);
+  if (match.favorite && !finished(match)) tags.push(`<span class="tag">Favorito: ${esc(match.favorite)}</span>`);
+  return `<article class="${classes}">
+    <div class="match-top">
+      <div class="match-date">${fmtDate(date)} · ${fmtTime(date)} · Brasília</div>
+      <div class="status ${live(match) ? "live" : finished(match) ? "done" : ""}">${statusLabel(match)}</div>
+    </div>
+    <div class="match-teams">
+      <div class="team"><span>${esc(match.home)}</span></div>
+      ${scoreHtml(match)}
+      <div class="team away"><span>${esc(match.away)}</span></div>
+    </div>
+    ${goalsHtml(match)}
+    <div class="stage">${stageLabel(match.stage)}${match.venue ? ` · ${esc(match.venue)}` : ""}</div>
+    ${tags.length ? `<div class="tags">${tags.join("")}</div>` : ""}
+  </article>`;
+}
+
+function filteredMatches() {
+  let list = [...(DATA.matches || [])].sort((a, b) => dt(a) - dt(b));
+  if (query) {
+    const normalizedQuery = norm(query);
+    list = list.filter((match) => norm(`${match.home} ${match.away}`).includes(normalizedQuery));
+  }
+  if (filter === "hoje") list = list.filter((match) => dateKey(dt(match)) === todayKey());
+  else if (filter === "proximos") list = list.filter(upcoming).slice(0, 12);
+  else if (filter === "resultados") list = list.filter(finished).reverse().slice(0, 16);
+  else if (filter === "brasil") list = list.filter(isBrazil);
+  return list;
+}
+
+function renderMatches() {
+  const list = filteredMatches();
+  $("#matchesList").innerHTML = list.length ? list.map(matchCard).join("") : `<div class="empty">Nenhum jogo encontrado neste filtro.</div>`;
+  $$(".filter-chip").forEach((button) => button.classList.toggle("active", button.dataset.filter === filter));
+}
+
+function renderSummary() {
+  const matches = [...(DATA.matches || [])].sort((a, b) => dt(a) - dt(b));
+  const liveNow = matches.filter(live);
+  const next = matches.find(upcoming);
+  const last = [...matches].filter(finished).sort((a, b) => dt(b) - dt(a))[0];
+  const topGoals = Math.max(0, ...(DATA.scorers || []).map((item) => Number(item.goals) || 0));
+  const leaders = (DATA.scorers || []).filter((item) => Number(item.goals) === topGoals);
+  const cards = [
+    liveNow.length ? ["Agora", `${liveNow.length} jogo(s) ao vivo`, "Placar informado na última atualização."] : next ? ["Próximo jogo", `${next.home} × ${next.away}`, `${fmtDate(dt(next))} · ${fmtTime(dt(next))}`] : ["Agenda", "Sem jogos futuros", "Aguardando encerramento do torneio."],
+    last ? ["Último resultado", `${last.home} ${last.homeScore} × ${last.awayScore} ${last.away}`, stageLabel(last.stage)] : ["Resultados", "Ainda não disponíveis", ""],
+    leaders.length ? [leaders.length > 1 ? "Líderes da artilharia" : "Artilheiro", leaders.map((item) => item.name).join(" · "), `${topGoals} gol${topGoals === 1 ? "" : "s"}`] : ["Artilharia", "Aguardando dados", ""],
+    ["Atualização", "Manual e validada", "Solicite a atualização por aqui após os jogos."]
+  ];
+  $("#quickSummary").innerHTML = cards.map((card) => `<div class="summary-card"><span>${esc(card[0])}</span><strong>${esc(card[1])}</strong><span>${esc(card[2])}</span></div>`).join("");
+}
+
+function renderBrazil() {
+  const matches = (DATA.matches || []).filter(isBrazil).sort((a, b) => dt(a) - dt(b));
+  const next = matches.find(upcoming);
+  const last = [...matches].filter(finished).sort((a, b) => dt(b) - dt(a))[0];
+  const path = (DATA.brazilPath || []).map((item) => `<div class="bracket-line"><span>${esc(item.phase)}</span><strong>${esc(item.value)}</strong></div>`).join("");
+  $("#brazilPanel").innerHTML = `
+    <div class="info-card"><span>Situação</span><strong>${next ? "Em disputa" : "Campanha encerrada"}</strong><span>${next ? `${fmtDate(dt(next))} · ${fmtTime(dt(next))}` : "Veja o último resultado e o caminho na competição."}</span></div>
+    <div class="info-card"><span>Último jogo</span><strong>${last ? `${esc(last.home)} ${last.homeScore} × ${last.awayScore} ${esc(last.away)}` : "Sem resultado"}</strong><span>${last ? stageLabel(last.stage) : ""}</span></div>
+    <div class="info-card path-card"><span>Resumo da campanha</span>${path || "<strong>Aguardando atualização.</strong>"}</div>`;
+}
+
+function renderBracket() {
+  const groups = DATA.bracket || [];
+  $("#bracketPanel").innerHTML = groups.length ? groups.map((group) => `<div class="bracket-row"><h3>${esc(group.phase)}</h3>${group.items.map((item) => `<div class="bracket-line"><span>${esc(item.match)}</span><strong>${esc(item.status || item.pick || "A definir")}</strong></div>`).join("")}</div>`).join("") : `<div class="empty">Chaveamento ainda não disponível.</div>`;
+}
+
+function renderScorers() {
+  const scorers = [...(DATA.scorers || [])].sort((a, b) => Number(b.goals) - Number(a.goals) || a.name.localeCompare(b.name, "pt-BR"));
+  let previousGoals = null;
+  let currentRank = 0;
+  const rows = scorers.map((scorer, index) => {
+    const goals = Number(scorer.goals) || 0;
+    if (goals !== previousGoals) currentRank = index + 1;
+    previousGoals = goals;
+    return `<div class="scorer-row"><div class="rank">${currentRank}º</div><div class="scorer-name"><strong>${esc(scorer.name)}</strong><div class="muted">${esc(scorer.team)}</div></div><div class="goals"><strong>${goals}</strong><span>gol${goals === 1 ? "" : "s"}</span></div></div>`;
+  }).join("");
+  $("#scorersPanel").innerHTML = rows || `<div class="empty">Artilharia ainda não disponível.</div>`;
+}
+
+function renderStatus() {
+  const updated = DATA.meta?.lastUpdated ? new Date(DATA.meta.lastUpdated) : null;
+  $("#updatePill").textContent = updated ? `Atualizado ${fmtDate(updated)} · ${fmtTime(updated)}` : "Dados carregados";
+  $("#dataStatus").innerHTML = `<strong>Atualização manual.</strong> ${updated ? `Dados revisados em ${fmtDate(updated)}, às ${fmtTime(updated)}.` : "Data da revisão não informada."}<br>Resultados, autores dos gols, artilharia e chaveamento são publicados somente após validação.`;
+}
+
+function renderAll() {
+  renderSummary();
+  renderMatches();
+  renderBracket();
+  renderScorers();
+  renderBrazil();
+  renderStatus();
+}
+
+async function load() {
+  try {
+    const response = await fetch(`data/copa2026.json?v=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error("Falha ao carregar dados");
+    DATA = await response.json();
+    renderAll();
+  } catch (error) {
+    $("#quickSummary").innerHTML = `<div class="empty">Não foi possível carregar os dados.</div>`;
+    $("#dataStatus").textContent = "Erro ao carregar data/copa2026.json.";
+  }
+}
+
+$$(".filter-chip").forEach((button) => button.addEventListener("click", () => {
+  filter = button.dataset.filter;
+  renderMatches();
+}));
+$("#teamSearch").addEventListener("input", (event) => {
+  query = event.target.value;
+  renderMatches();
+});
+$("#refreshBtn").addEventListener("click", load);
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js").catch(() => {}));
+}
+
 load();
