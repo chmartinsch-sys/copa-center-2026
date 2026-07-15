@@ -1,10 +1,9 @@
 {
   "name": "copa-center-2026",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "update:data": "node scripts/update-data.mjs",
-    "check": "node --check app.js && node --check scripts/update-data.mjs"
+    "check": "node --check app.js && node --check service-worker.js"
   }
 }
