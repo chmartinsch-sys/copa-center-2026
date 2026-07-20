@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "lastUpdated": "2026-07-20T03:15:00.000Z",
+    "source": "Atualização manual com resultados confirmados por FIFA, Reuters e AP",
+    "timezone": "America/Sao_Paulo",
+    "note": "Copa encerrada em 19/07/2026: Espanha campeã, Argentina vice, Inglaterra em terceiro e França em quarto."
+  },
+  "matches": [
+    {
+      "id": "53452535",
+      "utcDate": "2026-07-15T19:00:00.000Z",
+      "stage": "semifinal",
+      "home": "Inglaterra",
+      "away": "Argentina",
+      "homeScore": 1,
+      "awayScore": 2,
+      "status": "finished",
+      "statusShort": "FT",
+      "venue": "Atlanta Stadium",
+      "projection": "Argentina avançou à final",
+      "winner": "Argentina",
+      "goals": [
+        { "team": "Inglaterra", "player": "Anthony Gordon", "minute": "55" },
+        { "team": "Argentina", "player": "Enzo Fernández", "minute": "85" },
+        { "team": "Argentina", "player": "Lautaro Martínez", "minute": "90+2" }
+      ]
+    },
+    {
+      "id": "53452537",
+      "utcDate": "2026-07-18T21:00:00.000Z",
+      "stage": "terceiro",
+      "home": "França",
+      "away": "Inglaterra",
+      "homeScore": 4,
+      "awayScore": 6,
+      "status": "finished",
+      "statusShort": "FT",
+      "venue": "Miami Stadium",
+      "projection": "Inglaterra ficou em 3º lugar",
+      "winner": "Inglaterra",
+      "goals": [
+        { "team": "Inglaterra", "player": "Declan Rice", "minute": "3" },
+        { "team": "Inglaterra", "player": "Ezri Konsa", "minute": "18" },
+        { "team": "Inglaterra", "player": "Bukayo Saka", "minute": "37" },
+        { "team": "Inglaterra", "player": "Bukayo Saka", "minute": "45+1" },
+        { "team": "França", "player": "Kylian Mbappé", "minute": "48" },
+        { "team": "França", "player": "Bradley Barcola", "minute": "54" },
+        { "team": "França", "player": "Kylian Mbappé", "minute": "66" },
+        { "team": "Inglaterra", "player": "Bukayo Saka", "minute": "87", "detail": "pênalti" },
+        { "team": "França", "player": "Ousmane Dembélé", "minute": "90+6" },
+        { "team": "Inglaterra", "player": "Jude Bellingham", "minute": "90+8" }
+      ]
+    },
+    {
+      "id": "53452539",
+      "utcDate": "2026-07-19T19:00:00.000Z",
+      "stage": "final",
+      "home": "Espanha",
+      "away": "Argentina",
+      "homeScore": 1,
+      "awayScore": 0,
+      "status": "finished",
+      "statusShort": "AET",
+      "venue": "New York New Jersey Stadium",
+      "projection": "Espanha campeã mundial",
+      "winner": "Espanha",
+      "goals": [
+        { "team": "Espanha", "player": "Ferran Torres", "minute": "106" }
+      ]
+    }
+  ],
+  "scorers": [
+    { "name": "Kylian Mbappé", "team": "França", "goals": 10 },
+    { "name": "Lionel Messi", "team": "Argentina", "goals": 8 },
+    { "name": "Jude Bellingham", "team": "Inglaterra", "goals": 7 },
+    { "name": "Erling Haaland", "team": "Noruega", "goals": 7 },
+    { "name": "Ousmane Dembélé", "team": "França", "goals": 6 },
+    { "name": "Harry Kane", "team": "Inglaterra", "goals": 6 },
+    { "name": "Mikel Oyarzabal", "team": "Espanha", "goals": 5 },
+    { "name": "Ismaïla Sarr", "team": "Senegal", "goals": 4 },
+    { "name": "Julián Quiñones", "team": "México", "goals": 4 },
+    { "name": "Vinícius Júnior", "team": "Brasil", "goals": 4 }
+  ],
+  "favorites": [],
+  "bracket": [
+    {
+      "phase": "Semifinais",
+      "items": [
+        { "match": "França × Espanha", "status": "Espanha 2–0" },
+        { "match": "Inglaterra × Argentina", "status": "Argentina 2–1" }
+      ]
+    },
+    {
+      "phase": "Disputa de 3º lugar",
+      "items": [
+        { "match": "França × Inglaterra", "status": "Inglaterra 6–4 · 3º lugar" }
+      ]
+    },
+    {
+      "phase": "Final",
+      "items": [
+        { "match": "Espanha × Argentina", "status": "Espanha 1–0 (prorr.) · Campeã" }
+      ]
+    },
+    {
+      "phase": "Pódio final",
+      "items": [
+        { "match": "Campeã", "status": "Espanha" },
+        { "match": "Vice-campeã", "status": "Argentina" },
+        { "match": "3º lugar", "status": "Inglaterra" },
+        { "match": "4º lugar", "status": "França" }
+      ]
+    }
+  ]
+}
