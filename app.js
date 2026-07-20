@@ -106,11 +106,12 @@ function renderSummary() {
   const last = [...matches].filter(finished).sort((a, b) => dt(b) - dt(a))[0];
   const topGoals = Math.max(0, ...(DATA.scorers || []).map((item) => Number(item.goals) || 0));
   const leaders = (DATA.scorers || []).filter((item) => Number(item.goals) === topGoals);
+  const champion = (DATA.bracket || []).find((group) => norm(group.phase).includes("podio"))?.items?.find((item) => norm(item.match) === "campea")?.status;
   const cards = [
-    liveNow.length ? ["Agora", `${liveNow.length} jogo(s) ao vivo`, "Placar informado na última atualização."] : next ? ["Próximo jogo", `${next.home} × ${next.away}`, `${fmtDate(dt(next))} · ${fmtTime(dt(next))}`] : ["Agenda", "Sem jogos futuros", "Aguardando encerramento do torneio."],
+    liveNow.length ? ["Agora", `${liveNow.length} jogo(s) ao vivo`, "Placar informado na última atualização."] : next ? ["Próximo jogo", `${next.home} × ${next.away}`, `${fmtDate(dt(next))} · ${fmtTime(dt(next))}`] : champion ? ["Campeã mundial", champion, "Copa do Mundo 2026 encerrada."] : ["Agenda", "Sem jogos futuros", "Torneio encerrado."],
     last ? ["Último resultado", `${last.home} ${last.homeScore} × ${last.awayScore} ${last.away}`, stageLabel(last.stage)] : ["Resultados", "Ainda não disponíveis", ""],
     leaders.length ? [leaders.length > 1 ? "Líderes da artilharia" : "Artilheiro", leaders.map((item) => item.name).join(" · "), `${topGoals} gol${topGoals === 1 ? "" : "s"}`] : ["Artilharia", "Aguardando dados", ""],
-    ["Atualização", "Manual e validada", "Solicite a atualização por aqui após os jogos."]
+    ["Atualização", "Manual e validada", "Resultados finais confirmados."]
   ];
   $("#quickSummary").innerHTML = cards.map((card) => `<div class="summary-card"><span>${esc(card[0])}</span><strong>${esc(card[1])}</strong><span>${esc(card[2])}</span></div>`).join("");
 }
@@ -159,15 +160,40 @@ function renderAll() {
   renderStatus();
 }
 
+function applyDataUpdate(base, update) {
+  if (!update) return base;
+  const matchesById = new Map((base.matches || []).map((match) => [String(match.id), match]));
+  for (const match of update.matches || []) {
+    const id = String(match.id);
+    matchesById.set(id, { ...(matchesById.get(id) || {}), ...match });
+  }
+  return {
+    ...base,
+    ...update,
+    meta: { ...(base.meta || {}), ...(update.meta || {}) },
+    matches: [...matchesById.values()].sort((a, b) => dt(a) - dt(b)),
+    scorers: update.scorers || base.scorers || [],
+    favorites: update.favorites ?? base.favorites ?? [],
+    brazilPath: update.brazilPath || base.brazilPath || [],
+    bracket: update.bracket || base.bracket || []
+  };
+}
+
 async function load() {
   try {
-    const response = await fetch(`data/copa2026.json?v=${Date.now()}`, { cache: "no-store" });
-    if (!response.ok) throw new Error("Falha ao carregar dados");
-    DATA = await response.json();
+    const version = Date.now();
+    const [baseResponse, updateResponse] = await Promise.all([
+      fetch(`data/copa2026.json?v=${version}`, { cache: "no-store" }),
+      fetch(`data/final-update.json?v=${version}`, { cache: "no-store" }).catch(() => null)
+    ]);
+    if (!baseResponse.ok) throw new Error("Falha ao carregar dados");
+    const baseData = await baseResponse.json();
+    const updateData = updateResponse?.ok ? await updateResponse.json() : null;
+    DATA = applyDataUpdate(baseData, updateData);
     renderAll();
   } catch (error) {
     $("#quickSummary").innerHTML = `<div class="empty">Não foi possível carregar os dados.</div>`;
-    $("#dataStatus").textContent = "Erro ao carregar data/copa2026.json.";
+    $("#dataStatus").textContent = "Erro ao carregar os dados da Copa.";
   }
 }
 
