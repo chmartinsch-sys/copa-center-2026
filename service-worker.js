@@ -1,4 +1,4 @@
-const CACHE_NAME = "copa-center-v2";
+const CACHE_NAME = "copa-center-v3";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -23,9 +23,15 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const requestUrl = new URL(event.request.url);
 
-  if (requestUrl.pathname.endsWith("/data/copa2026.json")) {
+  if (requestUrl.pathname.endsWith("/data/copa2026.json") || requestUrl.pathname.endsWith("/data/final-update.json")) {
     event.respondWith(
-      fetch(event.request).catch(() => caches.match(event.request))
+      fetch(event.request).then((response) => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        }
+        return response;
+      }).catch(() => caches.match(event.request))
     );
     return;
   }
